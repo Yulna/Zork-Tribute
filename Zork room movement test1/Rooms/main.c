@@ -18,32 +18,44 @@ int main() {
 	printf("Use the keys (n/s/e/w) for directions, (l) to look at which room you are\nand (q) to quit.\n");
 
 	do{
+		printf("\n%s\n", ((room + i)->name));
 		printf("Where you want to go?");
 		fflush(stdin);
 		scanf_s("%c", &option);
 		switch (option){
 		case 'n':
-			printf("\n%s\n", ((room + i)->north));
+			if (room->rc_north == 5){
+				printf("You can't go there");
+				continue;
+			}
 			i = ((room + i)->rc_north);
 			break;
 
 		case 's':
-			printf("\n%s\n", ((room + i)->south));
-			i = ((room + i)->rc_south);
+			if (room->rc_north == 5){
+				printf("You can't go there");
+				continue;
+			}
+			i = ((room + i)->rc_north);
 			break;
 
 		case 'e':
-			printf("\n%s\n", ((room + i)->east));
-			i = ((room + i)->rc_east);
+			if (room->rc_north == 5){
+				printf("You can't go there");
+				continue;
+			}
+			i = ((room + i)->rc_north);
 			break;
 
 		case 'w':
-			printf("\n%s\n", ((room + i)->west));
-			i = ((room + i)->rc_west);
+			if (room->rc_north == 5){
+				printf("You can't go there");
+				continue;
+			}
+			i = ((room + i)->rc_north);
 			break;
 
 		case 'l':
-			printf("\n%s\n", ((room + i)->name));
 			break;
 
 		default:
