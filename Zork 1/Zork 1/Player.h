@@ -8,10 +8,9 @@ class Player
 public:
 	Room* current_room;
 
+public:
 	Player();
 	~Player();
-
-private:
 
 };
 

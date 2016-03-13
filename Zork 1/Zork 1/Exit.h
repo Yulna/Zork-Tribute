@@ -1,12 +1,13 @@
 #ifndef EXIT
 #define EXIT
 
+#include "Room.h"
 
 class Exit
 {
 public:
-	int north, south, west, east;
-
+	 
+//	Room* north_exit;
 
 	Exit();
 	~Exit();

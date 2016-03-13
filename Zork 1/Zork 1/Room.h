@@ -10,13 +10,15 @@ using namespace std;
 class Room
 {
 public:
-	string name="HABITACIO GUAI";
+	string name;
 	string description;
-	Exit* room_exits;
+	Room* north_exit;
+	Room* south_exit;
+	Room* weast_exit;
+	Room* east_exit;
 
-
-	//Room();
-	//~Room();
+	Room();
+    ~Room();
 
 private:
 
