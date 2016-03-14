@@ -23,6 +23,7 @@ void World::Create_world(){
 	strcpy_s(((room + Park_Start)->name), "PARK");
 	strcpy_s(((room + Park_Start)->description), "THE STARTING POINT");
 	(room + Park_Start)->north_exit = (room + Kid_house);
+	(room + Park_Start)->down_exit = (room + Kid_house);
 	(room + Park_Start)->open_down = false;
 
 	
@@ -92,22 +93,43 @@ void World::move_down(){
 
 //Open-door functions
 void World::open_north_exit(){
-	player->current_room->open_north = true;
-	cout << ("The north exit is opened") << endl;
+
+	if (player->current_room->open_north)					//Avoid opening unexisting doors
+		cout << ("There is nothing to open here") << endl;
+	else{
+		player->current_room->open_north = true;
+		cout << ("The north exit is opened") << endl;
+	}
 }
 void World::open_south_exit(){
-	player->current_room->open_south = true;
-	cout << ("The south exit is opened") << endl;
+	if (player->current_room->open_south)
+		cout << ("There is nothing to open here") << endl;
+	else{
+		player->current_room->open_south = true;
+		cout << ("The south exit is opened") << endl;
+	}
 }
 void World::open_weast_exit(){
-	player->current_room->open_weast = true;
-	cout << ("The weast exit is opened") << endl;
+	if (player->current_room->open_weast)
+		cout << ("There is nothing to open here") << endl;
+	else{
+		player->current_room->open_weast = true;
+		cout << ("The weast exit is opened") << endl;
+	}
 }
 void World::open_east_exit(){
-	player->current_room->open_east = true;
-	cout << ("The east exit is opened") << endl;
+	if (player->current_room->open_east)
+		cout << ("There is nothing to open here") << endl;
+	else{
+		player->current_room->open_east = true;
+		cout << ("The east exit is opened") << endl;
+	}
 }
 void World::open_down_exit(){
-	player->current_room->open_down = true;
-	cout << ("The down exit is opened") << endl;
+	if (player->current_room->open_down)
+		cout << ("There is nothing to open here") << endl;
+	else{
+		player->current_room->open_down = true;
+		cout << ("The down exit is opened") << endl;
+	}
 }

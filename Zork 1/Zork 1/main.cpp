@@ -15,7 +15,6 @@ using namespace std;
 int main(){
 	ReportMemoryLeaks();
 	bool game_on = true;
-	//enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library };
 	char comand[15];
 	World new_world;
 
@@ -27,13 +26,13 @@ int main(){
 
 		gets_s(comand);
 
-		if (comand == "look"||comand=="l"){
+		if (strcmp(comand, "look") == 0 || strcmp(comand, "l") == 0){
 			cout << new_world.player->current_room->name << endl;
 			cout << new_world.player->current_room->description << endl;
 		};
 
 		if (strcmp(comand, "help")==0 || strcmp(comand, "h")==0){
-			cout << ("Comands accepted:\nDirection: north/south/east/weast (n/s/e/w)\nCurrent place data: look (l)\n") << endl;
+			cout << ("Comands accepted:\n\nDirection: north/south/east/weast (n/s/e/w)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/east\nEnd game: quit(q)") << endl;
 		}
 
 		//movement inputs
