@@ -14,6 +14,7 @@ World::~World(){
 	delete player;
 }
 
+//Giving values and data to the difernt rooms
 void World::Create_world(){
 	
 	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
@@ -22,22 +23,17 @@ void World::Create_world(){
 	strcpy_s(((room + Park_Start)->name), "PARK");
 	strcpy_s(((room + Park_Start)->description), "THE STARTING POINT");
 	(room + Park_Start)->north_exit = (room + Kid_house);
-	//(room + Park_Start)->south_exit = (room + Park_Start);
-	//(room + Park_Start)->weast_exit = (room + Park_Start);
-	//(room + Park_Start)->east_exit = (room + Park_Start);
-	(room + Park_Start)->open_north = false;
+	(room + Park_Start)->open_down = false;
 
 	
 	//Kid house data
 	strcpy_s(((room + Kid_house)->name), "KIDDO");
 	strcpy_s(((room + Kid_house)->description ),"MOVED TO NORTH");
-	//(room + Kid_house)->north_exit = (room + Kid_house);
 	(room + Kid_house)->south_exit = (room + Park_Start);
-	//(room + Kid_house)->weast_exit = (room + Kid_house);
-	//(room + Kid_house)->east_exit = (room + Kid_house);
+
 }
 
-
+//Movement functions
 void World::move_north(){
 	if (player->current_room->north_exit == nullptr)
 		cout << ("There is nothing in that direction") << endl;
@@ -47,38 +43,71 @@ void World::move_north(){
 		cout << player->current_room->description << endl;
 	}
 	else
-		cout << ("The exit is closed");
-	
+		cout << ("The exit is closed") << endl;
 }
 void World::move_south(){
 	if (player->current_room->south_exit == nullptr)
 		cout << ("There is nothing in that direction") << endl;
-	else{
+	else if (player->current_room->open_south){
 		player->current_room = player->current_room->south_exit;
 		cout << player->current_room->name << endl;
 		cout << player->current_room->description << endl;
 	}
+	else
+		cout << ("The exit is closed") << endl;
 }
 void World::move_weast(){
 	if (player->current_room->weast_exit == nullptr)
 		cout << ("There is nothing in that direction") << endl;
-	else{
+	else if (player->current_room->open_weast){
 		player->current_room = player->current_room->weast_exit;
 		cout << player->current_room->name << endl;
 		cout << player->current_room->description << endl;
 	}
+	else
+		cout << ("The exit is closed") << endl;
 }
 void World::move_east(){
 	if (player->current_room->east_exit == nullptr)
 		cout << ("There is nothing in that direction") << endl;
-	else{
+	else if (player->current_room->open_east){
 		player->current_room = player->current_room->east_exit;
 		cout << player->current_room->name << endl;
 		cout << player->current_room->description << endl;
 	}
+	else
+		cout << ("The exit is closed") << endl;
+}
+void World::move_down(){
+	if (player->current_room->down_exit == nullptr)
+		cout << ("There is nothing in that direction") << endl;
+	else if (player->current_room->open_down){
+		player->current_room = player->current_room->down_exit;
+		cout << player->current_room->name << endl;
+		cout << player->current_room->description << endl;
+	}
+	else
+		cout << ("The exit is closed") << endl;
 }
 
-void World::open_room(){
+//Open-door functions
+void World::open_north_exit(){
 	player->current_room->open_north = true;
 	cout << ("The north exit is opened") << endl;
+}
+void World::open_south_exit(){
+	player->current_room->open_south = true;
+	cout << ("The south exit is opened") << endl;
+}
+void World::open_weast_exit(){
+	player->current_room->open_weast = true;
+	cout << ("The weast exit is opened") << endl;
+}
+void World::open_east_exit(){
+	player->current_room->open_east = true;
+	cout << ("The east exit is opened") << endl;
+}
+void World::open_down_exit(){
+	player->current_room->open_down = true;
+	cout << ("The down exit is opened") << endl;
 }

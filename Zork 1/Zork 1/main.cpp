@@ -33,26 +33,45 @@ int main(){
 		};
 
 		if (strcmp(comand, "help")==0 || strcmp(comand, "h")==0){
-			cout << ("Use the following comands:\nDirection: north/south/east/weast (n/s/e/w)\nCurrent place data: look (l)\n") << endl;
+			cout << ("Comands accepted:\nDirection: north/south/east/weast (n/s/e/w)\nCurrent place data: look (l)\n") << endl;
 		}
 
-		if (strcmp(comand, "north") || strcmp(comand, "n") || strcmp(comand, "go north")){
+		//movement inputs
+		if (strcmp(comand, "north") == 0 || strcmp(comand, "n") == 0 || strcmp(comand, "go north") == 0) {
 			new_world.move_north();
 		}
-		if (strcmp(comand, "south") || strcmp(comand, "s") || strcmp(comand, "go south")){
+		if (strcmp(comand, "south") == 0 || strcmp(comand, "s") == 0 || strcmp(comand, "go south") == 0){
 			new_world.move_south();
 		}
-		if (strcmp(comand, "weast") || strcmp(comand, "w") || strcmp(comand, "go weast")){
+		if (strcmp(comand, "weast") == 0 || strcmp(comand, "w") == 0 || strcmp(comand, "go weast") == 0){
 			new_world.move_weast();
 		}
-		if (strcmp(comand, "east") || strcmp(comand, "east") || strcmp(comand, "go east")){
+		if (strcmp(comand, "east") == 0 || strcmp(comand, "e") == 0 || strcmp(comand, "go east") == 0){
 			new_world.move_east();
 		}
+		if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down") == 0){
+			new_world.move_down();
+		}
 
-		if (comand == "open" || comand == "o")
-			new_world.open_room();
+		//Open doors input
+		if (strcmp(comand, "open north") == 0 || strcmp(comand, "o n") == 0 ){
+			new_world.open_north_exit();
+		}
+		if (strcmp(comand, "open south") == 0 || strcmp(comand, "o s") == 0){
+			new_world.open_south_exit();
+		}
+		if (strcmp(comand, "open weast") == 0 || strcmp(comand, "o w") == 0){
+			new_world.open_weast_exit();
+		}
+		if (strcmp(comand, "open east") == 0 || strcmp(comand, "o e") == 0){
+			new_world.open_east_exit();
+		}
+		if (strcmp(comand, "open down") == 0 || strcmp(comand, "o d") == 0){
+			new_world.open_down_exit();
+		}
+			
 		
-		if (comand == "quit" || comand == "q")
+		if (strcmp(comand, "quit") == 0 || strcmp(comand, "q") == 0)
 			game_on = false;
 	};
 	
