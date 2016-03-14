@@ -6,9 +6,10 @@
 class Exit
 {
 public:
+	
 	 
-//	Room* north_exit;
 
+public:
 	Exit();
 	~Exit();
 

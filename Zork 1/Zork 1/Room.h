@@ -1,7 +1,6 @@
 #ifndef ROOM
 #define ROOM
 
-#include "Exit.h"
 #include <string>
 
 using namespace std;
@@ -10,12 +9,14 @@ using namespace std;
 class Room
 {
 public:
-	string name;
-	string description;
+	char name[35];
+	char description[500];
 	Room* north_exit;
 	Room* south_exit;
 	Room* weast_exit;
 	Room* east_exit;
+	bool open_north;
+
 
 	Room();
     ~Room();
