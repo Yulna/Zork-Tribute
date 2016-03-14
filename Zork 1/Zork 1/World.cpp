@@ -1,4 +1,5 @@
 #include "World.h"
+#include <iostream>
 
 
 World::World(){
@@ -13,7 +14,7 @@ World::~World(){
 
 void World::Create_world(){
 	
-	enum Rooms_names{wall=0, Park_Start, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
+	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
 	
 	//Park data
 	(room + Park_Start)->name = "PARK";
@@ -31,4 +32,42 @@ void World::Create_world(){
 	(room + Kid_house)->south_exit = (room + Park_Start);
 	(room + Kid_house)->weast_exit = (room + Kid_house);
 	(room + Kid_house)->east_exit = (room + Kid_house);
+}
+
+
+void World::move_north(){
+	if (player->current_room == player->current_room->north_exit)
+		cout << ("There is nothing in that direction") << endl;
+	else{
+		player->current_room = player->current_room->north_exit;
+		cout << player->current_room->name << endl;
+		cout << player->current_room->description << endl;
+	}
+}
+void World::move_south(){
+	if (player->current_room == player->current_room->south_exit)
+		cout << ("There is nothing in that direction") << endl;
+	else{
+		player->current_room = player->current_room->south_exit;
+		cout << player->current_room->name << endl;
+		cout << player->current_room->description << endl;
+	}
+}
+void World::move_weast(){
+	if (player->current_room == player->current_room->weast_exit)
+		cout << ("There is nothing in that direction") << endl;
+	else{
+		player->current_room = player->current_room->weast_exit;
+		cout << player->current_room->name << endl;
+		cout << player->current_room->description << endl;
+	}
+}
+void World::move_east(){
+	if (player->current_room == player->current_room->east_exit)
+		cout << ("There is nothing in that direction") << endl;
+	else{
+		player->current_room = player->current_room->east_exit;
+		cout << player->current_room->name << endl;
+		cout << player->current_room->description << endl;
+	}
 }

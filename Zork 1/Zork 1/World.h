@@ -13,6 +13,10 @@ public:
 	World();
 	~World();
 	void Create_world();
+	void move_north();
+	void move_south();
+	void move_weast();
+	void move_east();
 };
 
 #endif // !WORLD
