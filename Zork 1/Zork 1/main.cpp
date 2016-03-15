@@ -91,6 +91,7 @@ int main(){
 
 
 		//Closing doors input
+		//Only already existing doors can be opened
 		else if (strcmp(comand, "close north") == 0 || strcmp(comand, "c n") == 0){
 			new_world.close_north_exit();
 		}

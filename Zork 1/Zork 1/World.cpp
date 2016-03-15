@@ -39,48 +39,49 @@ void World::Create_world(){
 
 	//Cross-dressing guy house data
 	strcpy_s(((room + Gross_guy_house)->name), "Gross cross-dressing guy house");
-	strcpy_s(((room + Gross_guy_house)->description), "");
+	strcpy_s(((room + Gross_guy_house)->description), "An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.\nTo south there is a scary and dark street, contrary to the east exit where you can see a beatiful amusment park.");
 	(room + Gross_guy_house)->south_exit = (room + Dark_street);
 	(room + Gross_guy_house)->weast_exit = (room + Shop);
 	(room + Gross_guy_house)->east_exit = (room + Amus_park);
 
 	//Dark street data
 	strcpy_s(((room + Dark_street)->name), "Dark street");
-	strcpy_s(((room + Dark_street)->description), "");
+	strcpy_s(((room + Dark_street)->description), "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed exit to south.");
 	(room + Dark_street)->north_exit = (room + Gross_guy_house);
 	(room + Dark_street)->south_exit = (room + Nrw_street);
 	(room + Dark_street)->open_south = false;
 
 	//Narrow street data
 	strcpy_s(((room + Nrw_street)->name), "Narrow street");
-	strcpy_s(((room + Nrw_street)->description), "");
+	strcpy_s(((room + Nrw_street)->description), "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
 	(room + Nrw_street)->north_exit = (room + Dark_street);
 	(room + Nrw_street)->east_exit = (room + Crush_house);
 	(room + Nrw_street)->open_east = false;
 
 	//Crush house data
 	strcpy_s(((room + Crush_house)->name), "Crush house");
-	strcpy_s(((room + Crush_house)->description), "Your personal sanctuary, ");
+	strcpy_s(((room + Crush_house)->description), "Your personal sanctuary, you've dreamed so many times of coming here but never mustered enough courage to do it.\nAll but an oddly place bush at the east that keeps bothering you seems like heaven.\nThe only way out is at north to the amusment park.");
 	(room + Crush_house)->north_exit = (room + Amus_park);
 	(room + Crush_house)->weast_exit = (room + Nrw_street);
+	(room + Crush_house)->open_weast = false;
 
 	//Amusement park data 
 	strcpy_s(((room + Amus_park)->name), "Amusment park");
-	strcpy_s(((room + Amus_park)->description), "The average amusment park, full with young lovely-dovey couples. ");
+	strcpy_s(((room + Amus_park)->description), "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the north exit, at east you can find the toilets if you need to use them.");
 	(room + Amus_park)->south_exit = (room + Crush_house);
 	(room + Amus_park)->weast_exit = (room + Gross_guy_house);
 	(room + Amus_park)->east_exit = (room + Toilet);
 
-	//Toilets data
+	//Toilets data 
 	strcpy_s(((room + Toilet)->name), "Public toilets");
-	strcpy_s(((room + Toilet)->description), "");
+	strcpy_s(((room + Toilet)->description), "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.");
 	(room + Toilet)->weast_exit = (room + Amus_park);
 	(room + Toilet)->down_exit = (room + Library);
 	(room + Toilet)->open_down = false;
 
 	//Library data
 	strcpy_s(((room + Library)->name), "Library");
-	strcpy_s(((room + Library)->description), "");
+	strcpy_s(((room + Library)->description), "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.");
 	(room + Library)->north_exit = (room + Park_Start);
 	(room + Library)->down_exit = (room + Toilet);
 	(room + Library)->open_down = false;
