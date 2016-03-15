@@ -24,9 +24,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exit.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Exit.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="MemLeaks.h">
