@@ -64,7 +64,7 @@ void World::Create_world()const	{
 
 	//Crush house data
 	strcpy_s(((room + Crush_house)->name), "\nCRUSH HOUSE");
-	strcpy_s(((room + Crush_house)->description), "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly place bush at the east that keeps bothering you seems like \nheaven.\nThe only way out is at north to the amusment park.");
+	strcpy_s(((room + Crush_house)->description), "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.");
 	(room + Crush_house)->north_exit = (room + Amus_park);
 	(room + Crush_house)->weast_exit = (room + Nrw_street);
 	(room + Crush_house)->door_weast = true;
@@ -72,7 +72,7 @@ void World::Create_world()const	{
 
 	//Amusement park data 
 	strcpy_s(((room + Amus_park)->name), "\nAMUSMENT PARK");
-	strcpy_s(((room + Amus_park)->description), "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the north exit, at east you can find the toilets if you need to use them.");
+	strcpy_s(((room + Amus_park)->description), "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.");
 	(room + Amus_park)->south_exit = (room + Crush_house);
 	(room + Amus_park)->weast_exit = (room + Gross_guy_house);
 	(room + Amus_park)->east_exit = (room + Toilet);

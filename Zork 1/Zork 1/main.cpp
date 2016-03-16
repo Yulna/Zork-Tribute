@@ -41,11 +41,11 @@ int main(){
 		Direction: north/south/east/weast/down (n/s/e/w/d)
 		Direction can also be used by: go "direction"
 		Current place data: look (l)
-		Open doors: open "direction" where direction is north/south/east/east/down
-		Close doors: close "direction" where direction is north/south/east/east/down
+		Open doors: open "direction" where direction is north/south/east/weast/down
+		Close doors: close "direction" where direction is north/south/east/weast/down
 		End game: quit(q)*/
 		else if (strcmp(comand, "help")==0 || strcmp(comand, "h")==0){
-			cout << ("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/east/down\nClose doors: close \"direction\" where direction is north/south/east/east/down\nEnd game: quit(q) \n") << endl;
+			cout << ("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n") << endl;
 		}
 
 		//movement inputs
