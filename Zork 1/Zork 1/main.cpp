@@ -18,11 +18,14 @@ int main(){
 	char comand[15];
 	World new_world;
 
+	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.room;
 	
+	cout << ("                          ***THE SACRED PANTIES***\n") << endl;
 
 	while (game_on==true){
 
+		cout << ("\nWhat do you want to do?") << endl;
 
 		gets_s(comand);
 
@@ -63,19 +66,19 @@ int main(){
 		}
 
 		//Open doors input
-		else if (strcmp(comand, "open north") == 0 || strcmp(comand, "o n") == 0 ){
+		else if (strcmp(comand, "open north") == 0 || strcmp(comand, "o n") == 0 || strcmp(comand, "open n") == 0){
 			new_world.open_north_exit();
 		}
-		else if (strcmp(comand, "open south") == 0 || strcmp(comand, "o s") == 0){
+		else if (strcmp(comand, "open south") == 0 || strcmp(comand, "o s") == 0 || strcmp(comand, "open s") == 0){
 			new_world.open_south_exit();
 		}
-		else if (strcmp(comand, "open weast") == 0 || strcmp(comand, "o w") == 0){
+		else if (strcmp(comand, "open weast") == 0 || strcmp(comand, "o w") == 0 || strcmp(comand, "open w") == 0){
 			new_world.open_weast_exit();
 		}
-		else if (strcmp(comand, "open east") == 0 || strcmp(comand, "o e") == 0){
+		else if (strcmp(comand, "open east") == 0 || strcmp(comand, "o e") == 0 || strcmp(comand, "open e") == 0){
 			new_world.open_east_exit();
 		}
-		else if (strcmp(comand, "open down") == 0 || strcmp(comand, "o d") == 0){
+		else if (strcmp(comand, "open down") == 0 || strcmp(comand, "o d" ) == 0|| strcmp(comand, "open d") == 0){
 			new_world.open_down_exit();
 		}
 		else if (strcmp(comand, "open all")==0){ //open all doors of the room
