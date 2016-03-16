@@ -4,7 +4,7 @@
 Repository for my Zork like game.
 ##How to play
 
-IMPORTAT: comands MUST be written all in lower case letter otherwise they will not be reconized
+IMPORTAT: comands MUST be written all in lower case letters otherwise they will not be reconized
 
 You start in a kids park at a normal town, move around using the compas directions.
 Below tou have a list of all the possible comands.

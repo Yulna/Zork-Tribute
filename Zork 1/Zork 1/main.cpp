@@ -97,7 +97,7 @@ int main(){
 
 
 		//Closing doors input
-		//Only already existing doors can be opened
+		//Only already existing doors can be closed
 		else if (strcmp(comand, "close north") == 0 || strcmp(comand, "c n") == 0 || strcmp(comand, "close n") == 0){
 			new_world.close_north_exit();
 		}
@@ -113,7 +113,7 @@ int main(){
 		else if (strcmp(comand, "close down") == 0 || strcmp(comand, "c d") == 0 || strcmp(comand, "close d") == 0){
 			new_world.close_down_exit();
 		}
-		else if (strcmp(comand, "close all") == 0){ //open all doors of the room
+		else if (strcmp(comand, "close all") == 0){ //close all doors of the room
 			new_world.close_north_exit();
 			new_world.close_south_exit();
 			new_world.close_weast_exit();
