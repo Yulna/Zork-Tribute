@@ -15,7 +15,7 @@ World::~World(){
 }
 
 //Giving values and data to the difernt rooms
-void World::Create_world(){
+void World::Create_world()const	{
 	
 	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
 	
@@ -94,7 +94,7 @@ void World::Create_world(){
 
 
 //print the current room on the game
-void World::print_room(){
+void World::print_room()const{
 	cout << player->current_room->name << endl;
 	cout << player->current_room->description << endl;
 }

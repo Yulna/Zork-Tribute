@@ -13,10 +13,10 @@ public:
 public:
 	World();
 	~World();
-	void Create_world();
+	void Create_world() const;
 
 	//Print the current room on the game
-	void print_room();
+	void print_room() const;
 
 	//movement prototypes
 	void move_north();
