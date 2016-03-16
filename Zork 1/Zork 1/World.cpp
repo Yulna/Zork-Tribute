@@ -106,6 +106,7 @@ void World::move_north(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_north){
 		player->current_room = player->current_room->north_exit;
+		print_room();
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -115,6 +116,7 @@ void World::move_south(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_south){
 		player->current_room = player->current_room->south_exit;
+		print_room();
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -124,6 +126,7 @@ void World::move_weast(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_weast){
 		player->current_room = player->current_room->weast_exit;
+		print_room();
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -133,6 +136,7 @@ void World::move_east(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_east){
 		player->current_room = player->current_room->east_exit;
+		print_room();
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -142,6 +146,7 @@ void World::move_down(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_down){
 		player->current_room = player->current_room->down_exit;
+		print_room();
 	}
 	else
 		cout << ("The exit is closed") << endl;
