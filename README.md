@@ -12,8 +12,8 @@ Below tou have a list of all the possible comands.
 Direction: north/south/east/weast/down (n/s/e/w/d)  
 Direction can also be used by: go "direction"   
 Current place data: look (l)  
-Open doors: open "direction" where direction is north/south/east/east  
-Close doors: close "direction" where direction is north/south/east/east  
+Open doors: open "direction" where direction is north/south/east/weast  
+Close doors: close "direction" where direction is north/south/east/weast  
 Also possible to close or open all doors in the area by using the open/close all commands
 End game: quit(q)  
 
@@ -22,6 +22,10 @@ In the game there are 2 hidden closed passages that are not shown in the rooms d
 
 ## Credits
 Joan Pareja: https://github.com/Yulna
+
+##Changelog
+v1.0.1-Updated some wrong descritions
+v1.0-First release
 </content>
   <tabTrigger></tabTrigger>
 </snippet>
