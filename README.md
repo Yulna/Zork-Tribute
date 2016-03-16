@@ -1,9 +1,11 @@
 <snippet>
   <content>
-# Zork Tribute
+# Zork tribute game: The Sacred panties
 Repository for my Zork like game.
+##Usage
+
 ## Credits
-Joan Pareja
+Joan Pareja: https://github.com/Yulna
 </content>
   <tabTrigger></tabTrigger>
 </snippet>
