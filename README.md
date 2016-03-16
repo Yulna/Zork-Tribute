@@ -24,7 +24,7 @@ In the game there are 2 hidden closed passages that are not shown in the rooms d
 Joan Pareja: https://github.com/Yulna
 
 ##Changelog
-v1.0.1-Updated some wrong descritions
+v1.0.1-Updated some wrong descritions   
 v1.0-First release
 </content>
   <tabTrigger></tabTrigger>
