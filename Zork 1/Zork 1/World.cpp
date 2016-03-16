@@ -49,6 +49,7 @@ void World::Create_world(){
 	strcpy_s(((room + Dark_street)->description), "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
 	(room + Dark_street)->north_exit = (room + Gross_guy_house);
 	(room + Dark_street)->south_exit = (room + Nrw_street);
+	(room + Dark_street)->door_south = true;
 	(room + Dark_street)->open_south = false;
 
 	//Narrow street data
@@ -56,6 +57,7 @@ void World::Create_world(){
 	strcpy_s(((room + Nrw_street)->description), "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
 	(room + Nrw_street)->north_exit = (room + Dark_street);
 	(room + Nrw_street)->east_exit = (room + Crush_house);
+	(room + Nrw_street)->door_east = true;
 	(room + Nrw_street)->open_east = false;
 
 	//Crush house data
@@ -63,6 +65,7 @@ void World::Create_world(){
 	strcpy_s(((room + Crush_house)->description), "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly place bush at the east that keeps bothering you seems like \nheaven.\nThe only way out is at north to the amusment park.");
 	(room + Crush_house)->north_exit = (room + Amus_park);
 	(room + Crush_house)->weast_exit = (room + Nrw_street);
+	(room + Crush_house)->door_weast = true;
 	(room + Crush_house)->open_weast = false;
 
 	//Amusement park data 
@@ -77,6 +80,7 @@ void World::Create_world(){
 	strcpy_s(((room + Toilet)->description), "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.");
 	(room + Toilet)->weast_exit = (room + Amus_park);
 	(room + Toilet)->down_exit = (room + Library);
+	(room + Toilet)->door_down = true;
 	(room + Toilet)->open_down = false;
 
 	//Library data
@@ -84,6 +88,7 @@ void World::Create_world(){
 	strcpy_s(((room + Library)->description), "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.");
 	(room + Library)->north_exit = (room + Park_Start);
 	(room + Library)->down_exit = (room + Toilet);
+	(room + Library)->door_down = true;
 	(room + Library)->open_down = false;
 }
 
@@ -145,86 +150,126 @@ void World::move_down(){
 //Open-door methods
 void World::open_north_exit(){
 
-	if (player->current_room->open_north)					//Avoid opening unexisting doors
-		cout << ("There is nothing to open at north") << endl;
-	else{
-		player->current_room->open_north = true;
-		cout << ("The north exit is opened") << endl;
+	if (player->current_room->door_north){
+		if (player->current_room->open_north)
+			cout << ("The door is already opened") << endl;
+		else{
+			player->current_room->open_north = true;
+			cout << ("The north exit is opened") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to open to north") << endl;
 }
 void World::open_south_exit(){
-	if (player->current_room->open_south)
-		cout << ("There is nothing to open at south") << endl;
-	else{
-		player->current_room->open_south = true;
-		cout << ("The south exit is opened") << endl;
+	if (player->current_room->door_south){
+		if (player->current_room->open_south)
+			cout << ("The door is already opened") << endl;
+		else{
+			player->current_room->open_south = true;
+			cout << ("The south exit is opened") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to open to south") << endl;
 }
 void World::open_weast_exit(){
-	if (player->current_room->open_weast)
-		cout << ("There is nothing to open at weast") << endl;
-	else{
-		player->current_room->open_weast = true;
-		cout << ("The weast exit is opened") << endl;
+	if (player->current_room->door_weast){
+		if (player->current_room->open_weast)
+			cout << ("The door is already opened") << endl;
+		else{
+			player->current_room->open_weast = true;
+			cout << ("The weast exit is opened") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to open to weast") << endl;
 }
 void World::open_east_exit(){
-	if (player->current_room->open_east)
-		cout << ("There is nothing to open at east") << endl;
-	else{
-		player->current_room->open_east = true;
-		cout << ("The east exit is opened") << endl;
+	if (player->current_room->door_east){
+		if (player->current_room->open_east)
+			cout << ("The door is already opened") << endl;
+		else{
+			player->current_room->open_east = true;
+			cout << ("The east exit is opened") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to open to east") << endl;
 }
 void World::open_down_exit(){
-	if (player->current_room->open_down)
-		cout << ("There is nothing to open below") << endl;
-	else{
-		player->current_room->open_down = true;
-		cout << ("The down exit is opened") << endl;
+	if (player->current_room->door_down){
+		if (player->current_room->open_down)
+			cout << ("The door is already opened") << endl;
+		else{
+			player->current_room->open_down = true;
+			cout << ("The down exit is opened") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to open below") << endl;
 }
 
 
 //Close-door methods
 //Same as the open methods but returning a false value
 void World::close_north_exit(){
-	if (player->current_room->open_north)					//Avoid opening unexisting doors
-		cout << ("There is nothing to close at north.") << endl;
-	else{
-		player->current_room->open_north = false;
-		cout << ("The north exit is closed.") << endl;
+	if (player->current_room->door_north){
+		if (player->current_room->open_north == false)
+			cout << ("The door is already closed") << endl;
+		else{
+			player->current_room->open_north = false;
+			cout << ("The north exit is closed") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to close to north") << endl;
 }
 void World::close_south_exit(){
-	if (player->current_room->open_south)
-		cout << ("There is nothing to close at south.") << endl;
-	else{
-		player->current_room->open_south = false;
-		cout << ("The south exit is closed.") << endl;
+	if (player->current_room->door_south){
+		if (player->current_room->open_south == false)
+			cout << ("The door is already closed") << endl;
+		else{
+			player->current_room->open_south = false;
+			cout << ("The south exit is closed") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to close to south") << endl;
 }
 void World::close_weast_exit(){
-	if (player->current_room->open_weast)
-		cout << ("There is nothing to close at weast.") << endl;
-	else{
-		player->current_room->open_weast = false;
-		cout << ("The weast exit is closed.") << endl;
+	if (player->current_room->door_weast){
+		if (player->current_room->open_weast == false)
+			cout << ("The door is already closed") << endl;
+		else{
+			player->current_room->open_weast = false;
+			cout << ("The weast exit is closed") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to close to weast") << endl;
 }
 void World::close_east_exit(){
-	if (player->current_room->open_east)
-		cout << ("There is nothing to close at east.") << endl;
-	else{
-		player->current_room->open_east = false;
-		cout << ("The east exit is closed.") << endl;
+	if (player->current_room->door_east){
+		if (player->current_room->open_east == false)
+			cout << ("The door is already closed") << endl;
+		else{
+			player->current_room->open_east = false;
+			cout << ("The east exit is closed") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to close to east") << endl;
 }
 void World::close_down_exit(){
-	if (player->current_room->open_down)
-		cout << ("There is nothing to close below.") << endl;
-	else{
-		player->current_room->open_down = false;
-		cout << ("The down exit is closed.") << endl;
+	if (player->current_room->door_down){
+		if (player->current_room->open_down==false)
+			cout << ("The door is already closed") << endl;
+		else{
+			player->current_room->open_down = false;
+			cout << ("The down exit is closed") << endl;
+		}
 	}
+	else
+		cout << ("There is nothing to close below") << endl;
 }

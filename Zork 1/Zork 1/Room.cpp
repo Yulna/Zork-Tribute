@@ -16,5 +16,12 @@ Room::Room(){
 	open_east = true;
 	open_weast = true;
 	open_down = true;
+
+	//Assigned to false to simplify world creation
+	door_north=false;
+	door_south=false;
+	door_east=false;
+	door_weast=false;
+	door_down=false;
 };
 Room::~Room(){};

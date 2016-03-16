@@ -39,9 +39,10 @@ int main(){
 		//Clarified version of the help text.
 		/*Comands accepted:
 		Direction: north/south/east/weast (n/s/e/w)
-		Direction can also be used by: go \"direction\"\nCurrent place data: look (l)
-		Open doors: open \"direction\" where direction is north/south/east/east
-		Close doors: close \"direction\" where direction is north/south/east/east
+		Direction can also be used by: go "direction"
+		Current place data: look (l)
+		Open doors: open "direction" where direction is north/south/east/east
+		Close doors: close "direction" where direction is north/south/east/east
 		End game: quit(q)*/
 		else if (strcmp(comand, "help")==0 || strcmp(comand, "h")==0){
 			cout << ("Comands accepted:\n\nDirection: north/south/east/weast (n/s/e/w)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/east\nClose doors: close \"direction\" where direction is north/south/east/east\nEnd game: quit(q) \n") << endl;
@@ -64,7 +65,7 @@ int main(){
 			new_world.move_east();
 			new_world.print_room();
 		}
-		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down" == 0 || strcmp(comand, "go d") == 0){
+		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down") == 0 || strcmp(comand, "go d") == 0){
 			new_world.move_down();
 			new_world.print_room();
 		}
@@ -102,19 +103,19 @@ int main(){
 
 		//Closing doors input
 		//Only already existing doors can be opened
-		else if (strcmp(comand, "close north") == 0 || strcmp(comand, "c n") == 0){
+		else if (strcmp(comand, "close north") == 0 || strcmp(comand, "c n") == 0 || strcmp(comand, "open n") == 0){
 			new_world.close_north_exit();
 		}
-		else if (strcmp(comand, "close south") == 0 || strcmp(comand, "c s") == 0){
+		else if (strcmp(comand, "close south") == 0 || strcmp(comand, "c s") == 0 || strcmp(comand, "open s") == 0){
 			new_world.close_south_exit();
 		}
-		else if (strcmp(comand, "close weast") == 0 || strcmp(comand, "c w") == 0){
+		else if (strcmp(comand, "close weast") == 0 || strcmp(comand, "c w") == 0 || strcmp(comand, "open w") == 0){
 			new_world.close_weast_exit();
 		}
-		else if (strcmp(comand, "close east") == 0 || strcmp(comand, "c e") == 0){
+		else if (strcmp(comand, "close east") == 0 || strcmp(comand, "c e") == 0 || strcmp(comand, "open e") == 0){
 			new_world.close_east_exit();
 		}
-		else if (strcmp(comand, "close down") == 0 || strcmp(comand, "c d") == 0){
+		else if (strcmp(comand, "close down") == 0 || strcmp(comand, "c d") == 0 || strcmp(comand, "open d") == 0){
 			new_world.close_down_exit();
 		}
 		else if (strcmp(comand, "close all") == 0){ //open all doors of the room
