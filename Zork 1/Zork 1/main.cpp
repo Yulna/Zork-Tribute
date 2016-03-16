@@ -20,7 +20,6 @@ int main(){
 
 	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.room;
-	new_world.player->previous_room = new_world.room;
 	
 	//print the name of the game and the starting room
 	cout << ("                          ***THE SACRED PANTIES***\n") << endl;
@@ -39,14 +38,14 @@ int main(){
 
 		//Clarified version of the help text.
 		/*Comands accepted:
-		Direction: north/south/east/weast (n/s/e/w)
+		Direction: north/south/east/weast/down (n/s/e/w/d)
 		Direction can also be used by: go "direction"
 		Current place data: look (l)
-		Open doors: open "direction" where direction is north/south/east/east
-		Close doors: close "direction" where direction is north/south/east/east
+		Open doors: open "direction" where direction is north/south/east/east/down
+		Close doors: close "direction" where direction is north/south/east/east/down
 		End game: quit(q)*/
 		else if (strcmp(comand, "help")==0 || strcmp(comand, "h")==0){
-			cout << ("Comands accepted:\n\nDirection: north/south/east/weast (n/s/e/w)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/east\nClose doors: close \"direction\" where direction is north/south/east/east\nEnd game: quit(q) \n") << endl;
+			cout << ("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/east/down\nClose doors: close \"direction\" where direction is north/south/east/east/down\nEnd game: quit(q) \n") << endl;
 		}
 
 		//movement inputs
@@ -124,7 +123,6 @@ int main(){
 		else if (strcmp(comand, "close") == 0){
 			cout << ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands") << endl;
 		}
-
 	
 		else if (strcmp(comand, "quit") == 0 || strcmp(comand, "q") == 0)
 			game_on = false;

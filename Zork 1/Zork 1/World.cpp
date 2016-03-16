@@ -57,6 +57,8 @@ void World::Create_world()const	{
 	strcpy_s(((room + Nrw_street)->description), "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
 	(room + Nrw_street)->north_exit = (room + Dark_street);
 	(room + Nrw_street)->east_exit = (room + Crush_house);
+	(room + Nrw_street)->door_north = true;
+	(room + Nrw_street)->open_north = false;
 	(room + Nrw_street)->door_east = true;
 	(room + Nrw_street)->open_east = false;
 
@@ -160,6 +162,9 @@ void World::open_north_exit(){
 			cout << ("The door is already opened") << endl;
 		else{
 			player->current_room->open_north = true;
+			//Change the state of the room door connected to the door you just opened.
+			//To do it it goes to the next room you will be if you pass trought the door and then opens the door form where you would come. This code is repeated in all opening/closing-door methods.
+			player->current_room->north_exit->open_south = true; 			
 			cout << ("The north exit is opened") << endl;
 		}
 	}
@@ -172,6 +177,7 @@ void World::open_south_exit(){
 			cout << ("The door is already opened") << endl;
 		else{
 			player->current_room->open_south = true;
+			player->current_room->south_exit->open_north = true;
 			cout << ("The south exit is opened") << endl;
 		}
 	}
@@ -184,6 +190,7 @@ void World::open_weast_exit(){
 			cout << ("The door is already opened") << endl;
 		else{
 			player->current_room->open_weast = true;
+			player->current_room->weast_exit->open_east = true;
 			cout << ("The weast exit is opened") << endl;
 		}
 	}
@@ -196,6 +203,7 @@ void World::open_east_exit(){
 			cout << ("The door is already opened") << endl;
 		else{
 			player->current_room->open_east = true;
+			player->current_room->east_exit->open_weast = true;
 			cout << ("The east exit is opened") << endl;
 		}
 	}
@@ -208,6 +216,7 @@ void World::open_down_exit(){
 			cout << ("The door is already opened") << endl;
 		else{
 			player->current_room->open_down = true;
+			player->current_room->down_exit->open_down = true;
 			cout << ("The down exit is opened") << endl;
 		}
 	}
@@ -224,6 +233,7 @@ void World::close_north_exit(){
 			cout << ("The door is already closed") << endl;
 		else{
 			player->current_room->open_north = false;
+			player->current_room->north_exit->open_south = false;
 			cout << ("The north exit is closed") << endl;
 		}
 	}
@@ -236,6 +246,7 @@ void World::close_south_exit(){
 			cout << ("The door is already closed") << endl;
 		else{
 			player->current_room->open_south = false;
+			player->current_room->south_exit->open_north = false;
 			cout << ("The south exit is closed") << endl;
 		}
 	}
@@ -248,6 +259,7 @@ void World::close_weast_exit(){
 			cout << ("The door is already closed") << endl;
 		else{
 			player->current_room->open_weast = false;
+			player->current_room->weast_exit->open_east = false;
 			cout << ("The weast exit is closed") << endl;
 		}
 	}
@@ -260,6 +272,7 @@ void World::close_east_exit(){
 			cout << ("The door is already closed") << endl;
 		else{
 			player->current_room->open_east = false;
+			player->current_room->east_exit->open_weast = false;
 			cout << ("The east exit is closed") << endl;
 		}
 	}
@@ -272,9 +285,49 @@ void World::close_down_exit(){
 			cout << ("The door is already closed") << endl;
 		else{
 			player->current_room->open_down = false;
+			player->current_room->down_exit->open_down = false;
 			cout << ("The down exit is closed") << endl;
 		}
 	}
 	else
 		cout << ("There is nothing to close below") << endl;
 }
+
+/*
+void World::door_sync(){
+	//Sync north-south
+	if (player->previous_room->door_north == player->current_room->door_south){  //compare if the rooms are conected by a door
+		if (player->previous_room->open_north != player->current_room->open_south){ //if its true compare if the doors have a diferent state
+			player->current_room->open_south = player->previous_room->open_north;  //if its true set the current room to how it was in the previous one (the cahanges you did)
+		}
+	}
+
+	//Sync south-north
+	if (player->previous_room->door_south == player->current_room->door_north){
+		if (player->previous_room->open_south != player->current_room->open_north){
+			player->current_room->open_north = player->previous_room->open_south;
+		}
+	}
+
+	//Sync weast-east
+	if (player->previous_room->door_weast == player->current_room->door_east){
+		if (player->previous_room->open_weast != player->current_room->open_east){
+			player->current_room->open_east = player->previous_room->open_weast;
+		}
+	}
+
+	//Sync east-weast
+	if (player->previous_room->door_east == player->current_room->door_weast){
+		if (player->previous_room->open_east != player->current_room->open_weast){
+			player->current_room->open_weast = player->previous_room->open_east;
+		}
+	}
+
+	//down sync
+	if (player->previous_room->door_down == player->current_room->door_down){
+		if (player->previous_room->open_down != player->current_room->open_down){
+			player->current_room->open_down = player->previous_room->open_down;
+		}
+	}
+}
+*/
