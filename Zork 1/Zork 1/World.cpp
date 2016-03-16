@@ -87,14 +87,20 @@ void World::Create_world(){
 	(room + Library)->open_down = false;
 }
 
+
+//print the current room on the game
+void World::print_room(){
+	cout << player->current_room->name << endl;
+	cout << player->current_room->description << endl;
+}
+
+
 //Movement methods
 void World::move_north(){
 	if (player->current_room->north_exit == nullptr)
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_north){
 		player->current_room = player->current_room->north_exit;
-		cout << player->current_room->name << endl;
-		cout << player->current_room->description << endl;
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -104,8 +110,6 @@ void World::move_south(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_south){
 		player->current_room = player->current_room->south_exit;
-		cout << player->current_room->name << endl;
-		cout << player->current_room->description << endl;
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -115,8 +119,6 @@ void World::move_weast(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_weast){
 		player->current_room = player->current_room->weast_exit;
-		cout << player->current_room->name << endl;
-		cout << player->current_room->description << endl;
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -126,8 +128,6 @@ void World::move_east(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_east){
 		player->current_room = player->current_room->east_exit;
-		cout << player->current_room->name << endl;
-		cout << player->current_room->description << endl;
 	}
 	else
 		cout << ("The exit is closed") << endl;
@@ -137,8 +137,6 @@ void World::move_down(){
 		cout << ("There is nothing in that direction") << endl;
 	else if (player->current_room->open_down){
 		player->current_room = player->current_room->down_exit;
-		cout << player->current_room->name << endl;
-		cout << player->current_room->description << endl;
 	}
 	else
 		cout << ("The exit is closed") << endl;

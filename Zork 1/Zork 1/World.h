@@ -15,6 +15,9 @@ public:
 	~World();
 	void Create_world();
 
+	//Print the current room on the game
+	void print_room();
+
 	//movement prototypes
 	void move_north();
 	void move_south();

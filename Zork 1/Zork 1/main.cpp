@@ -25,6 +25,7 @@ int main(){
 
 	while (game_on==true){
 
+
 		cout << ("\nWhat do you want to do?") << endl;
 
 		gets_s(comand);
@@ -46,19 +47,19 @@ int main(){
 		}
 
 		//movement inputs
-		else if (strcmp(comand, "north") == 0 || strcmp(comand, "n") == 0 || strcmp(comand, "go north") == 0) {
+		else if (strcmp(comand, "north") == 0 || strcmp(comand, "n") == 0 || strcmp(comand, "go north") == 0 || strcmp(comand, "go n") == 0) {
 			new_world.move_north();
 		}
-		else if (strcmp(comand, "south") == 0 || strcmp(comand, "s") == 0 || strcmp(comand, "go south") == 0){
+		else if (strcmp(comand, "south") == 0 || strcmp(comand, "s") == 0 || strcmp(comand, "go south") == 0 || strcmp(comand, "go s") == 0){
 			new_world.move_south();
 		}
-		else if (strcmp(comand, "weast") == 0 || strcmp(comand, "w") == 0 || strcmp(comand, "go weast") == 0){
+		else if (strcmp(comand, "weast") == 0 || strcmp(comand, "w") == 0 || strcmp(comand, "go weast") == 0 || strcmp(comand, "go w") == 0){
 			new_world.move_weast();
 		}
-		else if (strcmp(comand, "east") == 0 || strcmp(comand, "e") == 0 || strcmp(comand, "go east") == 0){
+		else if (strcmp(comand, "east") == 0 || strcmp(comand, "e") == 0 || strcmp(comand, "go east") == 0 || strcmp(comand, "go e") == 0){
 			new_world.move_east();
 		}
-		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down") == 0){
+		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down" == 0 || strcmp(comand, "go d") == 0){
 			new_world.move_down();
 		}
 		else if (strcmp(comand, "go")==0){
