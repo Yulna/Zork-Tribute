@@ -21,11 +21,12 @@ int main(){
 	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.room;
 	
+	//print the name of the game and the starting room
 	cout << ("                          ***THE SACRED PANTIES***\n") << endl;
+	new_world.print_room();
 
 	while (game_on==true){
-
-
+		
 		cout << ("\nWhat do you want to do?") << endl;
 
 		gets_s(comand);
@@ -49,18 +50,23 @@ int main(){
 		//movement inputs
 		else if (strcmp(comand, "north") == 0 || strcmp(comand, "n") == 0 || strcmp(comand, "go north") == 0 || strcmp(comand, "go n") == 0) {
 			new_world.move_north();
+			new_world.print_room();
 		}
 		else if (strcmp(comand, "south") == 0 || strcmp(comand, "s") == 0 || strcmp(comand, "go south") == 0 || strcmp(comand, "go s") == 0){
 			new_world.move_south();
+			new_world.print_room();
 		}
 		else if (strcmp(comand, "weast") == 0 || strcmp(comand, "w") == 0 || strcmp(comand, "go weast") == 0 || strcmp(comand, "go w") == 0){
 			new_world.move_weast();
+			new_world.print_room();
 		}
 		else if (strcmp(comand, "east") == 0 || strcmp(comand, "e") == 0 || strcmp(comand, "go east") == 0 || strcmp(comand, "go e") == 0){
 			new_world.move_east();
+			new_world.print_room();
 		}
 		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down" == 0 || strcmp(comand, "go d") == 0){
 			new_world.move_down();
+			new_world.print_room();
 		}
 		else if (strcmp(comand, "go")==0){
 			cout << ("You must say a direction (north/south/weast/east).\nUse \"h\" or \"help\" to see all available comands") << endl;
