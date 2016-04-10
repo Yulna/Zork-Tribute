@@ -2,6 +2,7 @@
 #define WORLD
 #include "Room.h"
 #include "Player.h"
+#include "Globals.h"
 
 
 class World
@@ -19,12 +20,8 @@ public:
 	void print_room() const;
 
 	//movement prototypes
-	void move_north();
-	void move_south();
-	void move_weast();
-	void move_east();
-	void move_down();
-
+	void move(direction);
+	
 	//Open prototypes
 	void open_north_exit();
 	void open_south_exit();

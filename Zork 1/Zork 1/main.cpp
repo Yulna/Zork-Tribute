@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include "World.h"
+#include "Globals.h"
 
 #include "MemLeaks.h"
 
@@ -50,19 +51,19 @@ int main(){
 
 		//movement inputs
 		else if (strcmp(comand, "north") == 0 || strcmp(comand, "n") == 0 || strcmp(comand, "go north") == 0 || strcmp(comand, "go n") == 0) {
-			new_world.move_north();
+			new_world.move(NORTH);
 		}
 		else if (strcmp(comand, "south") == 0 || strcmp(comand, "s") == 0 || strcmp(comand, "go south") == 0 || strcmp(comand, "go s") == 0){
-			new_world.move_south();
+			new_world.move(SOUTH);
 		}
 		else if (strcmp(comand, "weast") == 0 || strcmp(comand, "w") == 0 || strcmp(comand, "go weast") == 0 || strcmp(comand, "go w") == 0){
-			new_world.move_weast();
+			new_world.move(WEAST);
 		}
 		else if (strcmp(comand, "east") == 0 || strcmp(comand, "e") == 0 || strcmp(comand, "go east") == 0 || strcmp(comand, "go e") == 0){
-			new_world.move_east();
+			new_world.move(EAST);
 		}
 		else if (strcmp(comand, "down") == 0 || strcmp(comand, "d") == 0 || strcmp(comand, "go down") == 0 || strcmp(comand, "go d") == 0){
-			new_world.move_down();
+			new_world.move(DOWN);
 		}
 		else if (strcmp(comand, "go")==0){
 			cout << ("You must say a direction (north/south/weast/east).\nUse \"h\" or \"help\" to see all available comands") << endl;

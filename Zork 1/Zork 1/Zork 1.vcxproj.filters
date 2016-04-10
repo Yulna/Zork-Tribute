@@ -41,5 +41,8 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

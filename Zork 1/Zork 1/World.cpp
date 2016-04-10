@@ -1,4 +1,5 @@
 #include "World.h"
+#include "Globals.h"
 #include <iostream>
 #define NUM_ROOMS 10
 #define CRT_SECURE_NO_WARNINGS
@@ -103,56 +104,64 @@ void World::print_room()const{
 
 
 //Movement methods
-void World::move_north(){
-	if (player->current_room->north_exit == nullptr)
-		cout << ("There is nothing in that direction") << endl;
-	else if (player->current_room->open_north){
-		player->current_room = player->current_room->north_exit;
-		print_room();
+void World::move(direction dir){
+
+	if (dir == NORTH){
+		if (player->current_room->north_exit == nullptr)
+			cout << ("There is nothing in that direction") << endl;
+		else if (player->current_room->open_north){
+			player->current_room = player->current_room->north_exit;
+			print_room();
+		}
+		else
+			cout << ("The exit is closed") << endl;
 	}
-	else
-		cout << ("The exit is closed") << endl;
-}
-void World::move_south(){
-	if (player->current_room->south_exit == nullptr)
-		cout << ("There is nothing in that direction") << endl;
-	else if (player->current_room->open_south){
-		player->current_room = player->current_room->south_exit;
-		print_room();
+
+	if (dir == SOUTH){
+		if (player->current_room->south_exit == nullptr)
+			cout << ("There is nothing in that direction") << endl;
+		else if (player->current_room->open_south){
+			player->current_room = player->current_room->south_exit;
+			print_room();
+		}
+		else
+			cout << ("The exit is closed") << endl;
 	}
-	else
-		cout << ("The exit is closed") << endl;
-}
-void World::move_weast(){
-	if (player->current_room->weast_exit == nullptr)
-		cout << ("There is nothing in that direction") << endl;
-	else if (player->current_room->open_weast){
-		player->current_room = player->current_room->weast_exit;
-		print_room();
+
+	if (dir == WEAST){
+		if (player->current_room->weast_exit == nullptr)
+			cout << ("There is nothing in that direction") << endl;
+		else if (player->current_room->open_weast){
+			player->current_room = player->current_room->weast_exit;
+			print_room();
+		}
+		else
+			cout << ("The exit is closed") << endl;
 	}
-	else
-		cout << ("The exit is closed") << endl;
-}
-void World::move_east(){
-	if (player->current_room->east_exit == nullptr)
-		cout << ("There is nothing in that direction") << endl;
-	else if (player->current_room->open_east){
-		player->current_room = player->current_room->east_exit;
-		print_room();
+
+	if (dir == EAST){
+		if (player->current_room->east_exit == nullptr)
+			cout << ("There is nothing in that direction") << endl;
+		else if (player->current_room->open_east){
+			player->current_room = player->current_room->east_exit;
+			print_room();
+		}
+		else
+			cout << ("The exit is closed") << endl;
 	}
-	else
-		cout << ("The exit is closed") << endl;
-}
-void World::move_down(){
-	if (player->current_room->down_exit == nullptr)
-		cout << ("There is nothing in that direction") << endl;
-	else if (player->current_room->open_down){
-		player->current_room = player->current_room->down_exit;
-		print_room();
+
+	if (dir == DOWN){
+		if (player->current_room->down_exit == nullptr)
+			cout << ("There is nothing in that direction") << endl;
+		else if (player->current_room->open_down){
+			player->current_room = player->current_room->down_exit;
+			print_room();
+		}
+		else
+			cout << ("The exit is closed") << endl;
 	}
-	else
-		cout << ("The exit is closed") << endl;
 }
+
 
 //Open-door methods
 void World::open_north_exit(){
