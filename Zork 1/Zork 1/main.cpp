@@ -71,27 +71,28 @@ int main(){
 
 		//Open doors input
 		else if (strcmp(comand, "open north") == 0 || strcmp(comand, "o n") == 0 || strcmp(comand, "open n") == 0){
-			new_world.open_north_exit();
+			new_world.open_exit(NORTH);
 		}
 		else if (strcmp(comand, "open south") == 0 || strcmp(comand, "o s") == 0 || strcmp(comand, "open s") == 0){
-			new_world.open_south_exit();
+			new_world.open_exit(SOUTH);
 		}
 		else if (strcmp(comand, "open weast") == 0 || strcmp(comand, "o w") == 0 || strcmp(comand, "open w") == 0){
-			new_world.open_weast_exit();
+			new_world.open_exit(WEAST);
 		}
 		else if (strcmp(comand, "open east") == 0 || strcmp(comand, "o e") == 0 || strcmp(comand, "open e") == 0){
-			new_world.open_east_exit();
+			new_world.open_exit(EAST);
 		}
 		else if (strcmp(comand, "open down") == 0 || strcmp(comand, "o d" ) == 0|| strcmp(comand, "open d") == 0){
-			new_world.open_down_exit();
+			new_world.open_exit(DOWN);
 		}
 		else if (strcmp(comand, "open all")==0){ //open all doors of the room
-			new_world.open_north_exit();
-			new_world.open_south_exit();
-			new_world.open_weast_exit();
-			new_world.open_east_exit();
-			new_world.open_down_exit();
+			new_world.open_exit(NORTH);
+			new_world.open_exit(SOUTH);
+			new_world.open_exit(WEAST);
+			new_world.open_exit(EAST);
+			new_world.open_exit(DOWN);
 		}
+
 		else if (strcmp(comand, "open") == 0){
 			cout << ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands") << endl;
 		}
@@ -100,26 +101,26 @@ int main(){
 		//Closing doors input
 		//Only already existing doors can be closed
 		else if (strcmp(comand, "close north") == 0 || strcmp(comand, "c n") == 0 || strcmp(comand, "close n") == 0){
-			new_world.close_north_exit();
+			new_world.close_exit(NORTH);
 		}
 		else if (strcmp(comand, "close south") == 0 || strcmp(comand, "c s") == 0 || strcmp(comand, "close s") == 0){
-			new_world.close_south_exit();
+			new_world.close_exit(SOUTH);
 		}
 		else if (strcmp(comand, "close weast") == 0 || strcmp(comand, "c w") == 0 || strcmp(comand, "close w") == 0){
-			new_world.close_weast_exit();
+			new_world.close_exit(WEAST);
 		}
 		else if (strcmp(comand, "close east") == 0 || strcmp(comand, "c e") == 0 || strcmp(comand, "close e") == 0){
-			new_world.close_east_exit();
+			new_world.close_exit(EAST);
 		}
 		else if (strcmp(comand, "close down") == 0 || strcmp(comand, "c d") == 0 || strcmp(comand, "close d") == 0){
-			new_world.close_down_exit();
+			new_world.close_exit(DOWN);
 		}
 		else if (strcmp(comand, "close all") == 0){ //close all doors of the room
-			new_world.close_north_exit();
-			new_world.close_south_exit();
-			new_world.close_weast_exit();
-			new_world.close_east_exit();
-			new_world.close_down_exit();
+			new_world.close_exit(NORTH);
+			new_world.close_exit(SOUTH);
+			new_world.close_exit(WEAST);
+			new_world.close_exit(EAST);
+			new_world.close_exit(DOWN);
 		}
 		else if (strcmp(comand, "close") == 0){
 			cout << ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands") << endl;

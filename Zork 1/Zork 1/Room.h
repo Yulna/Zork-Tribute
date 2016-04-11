@@ -34,10 +34,9 @@ public:
 	bool door_down;
 
 
+public:
 	Room();
     ~Room();
-
-private:
 
 };
 

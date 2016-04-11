@@ -20,21 +20,14 @@ public:
 	void print_room() const;
 
 	//movement prototypes
-	void move(direction);
+	void move(direction dir);
 	
 	//Open prototypes
-	void open_north_exit();
-	void open_south_exit();
-	void open_weast_exit();
-	void open_east_exit();
-	void open_down_exit();
+	void open_exit(direction dir);
 
 	//Close prototypes
-	void close_north_exit();
-	void close_south_exit();
-	void close_weast_exit();
-	void close_east_exit();
-	void close_down_exit();
+	void close_exit(direction dir);
+
 };
 
 #endif // !WORLD
