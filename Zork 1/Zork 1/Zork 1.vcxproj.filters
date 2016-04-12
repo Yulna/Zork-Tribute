@@ -27,6 +27,9 @@
     <ClCompile Include="World.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="My_String.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">
@@ -42,6 +45,9 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="My_String.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
