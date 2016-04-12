@@ -2,16 +2,15 @@
 #define ROOM
 
 #include <string>
+#include "Entity.h"
 
 using namespace std;
 
 
-class Room
+class Room : public Entity 
 {
 public:
-	char name[35];
-	char description[500];
-
+	
 	//room exits
 	Room* north_exit;
 	Room* south_exit;

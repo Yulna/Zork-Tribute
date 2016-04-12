@@ -50,5 +50,8 @@
     <ClInclude Include="My_String.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
