@@ -24,8 +24,6 @@ String::~String(){
 };
 
 
-
-
 unsigned int String::lenght() const{
 	return strlen(the_string);
 };
@@ -55,7 +53,7 @@ bool String::empty() const{
 };
 
 bool String::operator==(const String& str) const{
-	if (strcmp(the_string, str.the_string) == 0)
+	if (_stricmp(the_string, str.the_string) == 0)
 		return true;
 	else
 		return false;
@@ -68,10 +66,6 @@ void String::operator=(const String &other_str){
 		max_size = len;
 		delete[] the_string;
 		the_string = new char[max_size];
-		printf("DELETE/NEW USED\n");
-	}
-	else{
-		printf("NO DELETE/NEW USED AT COPYING\n");
 	}
 	strcpy_s(the_string, len, other_str.the_string);
 };
@@ -79,14 +73,13 @@ void String::operator=(const String &other_str){
 void String::operator+=(const String &other_str){
 	int total_len = lenght() + other_str.lenght();
 	unsigned int string_end = lenght() + 1;
-	
-	if (max_size < total_len+1)	{
+
+	if (max_size < total_len + 1)	{
 		max_size = total_len + 1;
 		delete[] the_string;
 		the_string = new char[max_size];
-		printf("Delete/new used at +=\n");
 	}
-	else{
-		printf("Delte/new not used.\n");
-	}
-};
+}
+
+//Tokomize, retorna un vector de cadenes
+//Size depending in how many  words

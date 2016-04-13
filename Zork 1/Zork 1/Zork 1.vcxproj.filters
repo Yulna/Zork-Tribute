@@ -53,5 +53,8 @@
     <ClInclude Include="Entity.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

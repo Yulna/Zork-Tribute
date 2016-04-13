@@ -3,18 +3,20 @@
 #include "Room.h"
 #include "Player.h"
 #include "Globals.h"
+#include "Vector.h"
 
 
 class World
 {
 public:
-	Room* room = nullptr;
+	Vector<Room*> rooms;
+	Room* room;
 	Player* player = nullptr;
 
 public:
 	World();
 	~World();
-	void Create_world() const;
+	void Create_world();
 
 	//Print the current room on the game
 	void print_room() const;

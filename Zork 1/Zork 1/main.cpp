@@ -11,7 +11,6 @@
 
 #include "MemLeaks.h"
 
-using namespace std;
 
 int main(){
 	ReportMemoryLeaks();
@@ -20,22 +19,25 @@ int main(){
 	World new_world;
 
 	//Set the player current room to the starting room
-	new_world.player->current_room = new_world.room;
+	//new_world.player->current_room = new_world.room;
+	new_world.player->current_room = new_world.rooms[0];
+
 	
 	//print the name of the game and the starting room
-	cout << ("                          ***THE SACRED PANTIES***\n") << endl;
+	printf ("                          ***THE SACRED PANTIES***\n");
 	new_world.print_room();
 
 	while (game_on==true){
 		
-		cout << ("\nWhat do you want to do?") << endl;
+		printf ("\nWhat do you want to do?");
 
 		comand.write_str();
 
 		if (comand=="look" || comand == "l" ){
-			cout << new_world.player->current_room->name << endl;
-			cout << new_world.player->current_room->description << endl;
+			printf ("%s",new_world.player->current_room->name);
+			printf ("%s",new_world.player->current_room->description);
 		}
+		
 
 		//Clarified version of the help text.
 		/*Comands accepted:
@@ -45,8 +47,9 @@ int main(){
 		Open doors: open "direction" where direction is north/south/east/weast/down
 		Close doors: close "direction" where direction is north/south/east/weast/down
 		End game: quit(q)*/
+		
 		else if (comand == "help" || comand == "h"){
-			cout << ("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n") << endl;
+			printf ("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n\n");
 		}
 		
 		//movement inputs
@@ -66,7 +69,7 @@ int main(){
 			new_world.move(DOWN);
 		}
 		else if (comand == "go"){
-			cout << ("You must say a direction (north/south/weast/east).\nUse \"h\" or \"help\" to see all available comands") << endl;
+			printf ("You must say a direction (north/south/weast/east).\nUse \"h\" or \"help\" to see all available comands\n");
 		}
 
 		//Open doors input
@@ -94,7 +97,7 @@ int main(){
 		}
 
 		else if (comand == "open"){
-			cout << ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands") << endl;
+			printf ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands\n");
 		}
 
 
@@ -123,7 +126,7 @@ int main(){
 			new_world.close_exit(DOWN);
 		}
 		else if (comand== "close"){
-			cout << ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands") << endl;
+			printf ("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands\n");
 		}
 		
 	
@@ -132,7 +135,7 @@ int main(){
 
 		//Error input mesage
 		else
-			cout << ("Invalid comand. Use \"h\" or \"help\" to see all available comands") << endl;
+			printf ("Invalid comand. Use \"h\" or \"help\" to see all available comands\n");
 	};
 	
 
