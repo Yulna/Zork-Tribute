@@ -19,10 +19,12 @@ World::~World(){
 void World::Create_world(){
 	
 	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
+
+	Room* Park_Startp;
 	
 	//Park data
 
-	rooms.pushback(new Room("park", "park description"));
+	rooms.pushback(Park_Startp = new Room("PARK", "park description"));
 
 	//	room.pushback(new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north."));
 	(room + Park_Start)->name = "\nPARK";
@@ -103,8 +105,8 @@ void World::Create_world(){
 
 //print the current room on the game
 void World::print_room()const{
-	printf ("%s\n",player->current_room->name.get_str());
-	printf ("%s\n",player->current_room->description.get_str());
+	player->current_room->name.print_str();
+	player->current_room->description.print_str();
 }
 
 

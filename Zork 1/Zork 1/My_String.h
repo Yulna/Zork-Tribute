@@ -2,6 +2,7 @@
 #define __STRING_H__
 
 #include <string.h>
+#include "Vector.h"
 
 class String{
 private:
@@ -18,12 +19,14 @@ public:
 	unsigned int capacity() const;
 	const char* get_str() const;
 	void write_str();
+	void print_str() const;
 
 	bool empty() const;
 	bool operator == (const String& str) const;
 	void operator=(const String &other_str);
 	void operator+=(const String &other_str);
 
+	Vector<String*> tokemize();
 	
 };
 #endif // !__STRING_H__

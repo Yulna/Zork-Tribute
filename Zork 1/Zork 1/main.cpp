@@ -25,6 +25,7 @@ int main(){
 	
 	//print the name of the game and the starting room
 	printf ("                          ***THE SACRED PANTIES***\n");
+
 	new_world.print_room();
 
 	while (game_on==true){
@@ -34,8 +35,7 @@ int main(){
 		comand.write_str();
 
 		if (comand=="look" || comand == "l" ){
-			printf ("%s",new_world.player->current_room->name);
-			printf ("%s",new_world.player->current_room->description);
+			new_world.print_room();
 		}
 		
 
