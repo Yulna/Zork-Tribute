@@ -85,19 +85,14 @@ void String::operator+=(const String &other_str){
 
 //Tokomize, retorna un vector de cadenes
 //Size depending in how many  words
-Vector<String*> String::tokemize(){
+Vector<String*> String::tokenize(){
 	Vector<String*> ret;
 	char* context = nullptr;
-	int i = 0;
 
-	printf("Starting string tokenize");
 	ret.pushback(new String(strtok_s(the_string, " ", &context)));
-	i++;
-	printf("ended first token");
+
 	while (*context != '\0'){
-		i++;
 		ret.pushback(new String(strtok_s(NULL, " ", &context)));
-		printf("%i toekn done", i);
 	}
 	return ret;
 };

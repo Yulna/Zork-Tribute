@@ -5,13 +5,11 @@
 #define CRT_SECURE_NO_WARNINGS
 
 World::World(){
-	room = new Room[NUM_ROOMS];
 	player = new Player;
 	Create_world();
 
 };
 World::~World(){
-	delete[] room;
 	delete player;
 }
 
@@ -20,88 +18,76 @@ void World::Create_world(){
 	
 
 
-	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
+	Room* Park_Start = new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north.");
+	Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
+	Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
+	Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
+	Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
+	Room* Nrw_street = new Room("\nNARROW STREET", "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
+	Room* Crush_house = new Room("\nCRUSH HOUSE", "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.");
+	Room* Amus_park = new Room("\nAMUSMENT PARK", "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.");
+	Room* Toilet = new Room("\nPUBLIC TOILETS", "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.");
+	Room* Library = new Room("\nLIBRARY", "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.");
 
-	Room* Park_Startp = new Room("PARK", "park description");
+
 	
 	//Park data
+	Park_Start->Set_north_exit(Kid_house);
+	Park_Start->Set_south_exit(Library);
+	rooms.pushback(Park_Start);
 
-	rooms.pushback(Park_Startp);
-
-	//	room.pushback(new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north."));
-	(room + Park_Start)->name = "\nPARK";
-	(room + Park_Start)->description = "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north.";
-	(room + Park_Start)->north_exit = (room + Kid_house);
-	(room + Park_Start)->south_exit = (room + Library);
-	
 	//Kid house data
-	(room + Kid_house)->name = "\nANNOYING KID HOUSE";
-	(room + Kid_house)->description  ="The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.";
-	(room + Kid_house)->north_exit = (room + Shop);
-	(room + Kid_house)->south_exit = (room + Park_Start);
+	Kid_house->Set_north_exit(Shop);
+	Kid_house->Set_south_exit(Park_Start);
+	rooms.pushback(Kid_house);
 	
 	//Shop data
-	(room + Shop)->name = "\nREGULAR SHOP";
-	(room + Shop)->description = "A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.";
-	(room + Shop)->south_exit = (room + Kid_house);
-	(room + Shop)->east_exit = (room + Gross_guy_house);
+	Shop->Set_south_exit(Kid_house);
+	Shop->Set_east_exit(Gross_guy_house);
+	rooms.pushback(Shop);
 
 	//Cross-dressing guy house data
-	(room + Gross_guy_house)->name = "\nGROSS CROSS-DRESSING GUY HOUSE";
-	(room + Gross_guy_house)->description = "An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.";
-	(room + Gross_guy_house)->south_exit = (room + Dark_street);
-	(room + Gross_guy_house)->weast_exit = (room + Shop);
-	(room + Gross_guy_house)->east_exit = (room + Amus_park);
+	Gross_guy_house->Set_south_exit(Dark_street);
+	Gross_guy_house->Set_weast_exit(Shop);
+	Gross_guy_house->Set_east_exit(Amus_park);
+	rooms.pushback(Gross_guy_house);
 
 	//Dark street data
-	(room + Dark_street)->name = "\nDARK STREET";
-	(room + Dark_street)->description = "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.";
-	(room + Dark_street)->north_exit = (room + Gross_guy_house);
-	(room + Dark_street)->south_exit = (room + Nrw_street);
-	(room + Dark_street)->door_south = true;
-	(room + Dark_street)->open_south = false;
+	Dark_street->Set_north_exit(Gross_guy_house);
+	Dark_street->Set_south_exit(Nrw_street);
+	Dark_street->Set_south_door(false);				//Send the state of the door false==door closed
+	rooms.pushback(Dark_street);
 
 	//Narrow street data
-	(room + Nrw_street)->name = "\nNARROW STREET";
-	(room + Nrw_street)->description = "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.";
-	(room + Nrw_street)->north_exit = (room + Dark_street);
-	(room + Nrw_street)->east_exit = (room + Crush_house);
-	(room + Nrw_street)->door_north = true;
-	(room + Nrw_street)->open_north = false;
-	(room + Nrw_street)->door_east = true;
-	(room + Nrw_street)->open_east = false;
+	Nrw_street->Set_north_exit(Dark_street);
+	Nrw_street->Set_east_exit(Crush_house);
+	Nrw_street->Set_north_door(false);
+	Nrw_street->Set_east_door(false);
+	rooms.pushback(Nrw_street);
 
 	//Crush house data
-	(room + Crush_house)->name = "\nCRUSH HOUSE";
-	(room + Crush_house)->description = "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.";
-	(room + Crush_house)->north_exit = (room + Amus_park);
-	(room + Crush_house)->weast_exit = (room + Nrw_street);
-	(room + Crush_house)->door_weast = true;
-	(room + Crush_house)->open_weast = false;
-
+	Crush_house->Set_north_exit(Amus_park);
+	Crush_house->Set_weast_exit(Nrw_street);
+	Crush_house->Set_weast_door(false);
+	rooms.pushback(Crush_house);
+	
 	//Amusement park data 
-	(room + Amus_park)->name = "\nAMUSMENT PARK";
-	(room + Amus_park)->description = "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.";
-	(room + Amus_park)->south_exit = (room + Crush_house);
-	(room + Amus_park)->weast_exit = (room + Gross_guy_house);
-	(room + Amus_park)->east_exit = (room + Toilet);
+	Amus_park->Set_south_exit(Crush_house);
+	Amus_park->Set_weast_exit(Gross_guy_house);
+	Amus_park->Set_east_exit(Toilet);
+	rooms.pushback(Crush_house);
 
 	//Toilets data 
-	(room + Toilet)->name = "\nPUBLIC TOILETS";
-	(room + Toilet)->description = "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.";
-	(room + Toilet)->weast_exit = (room + Amus_park);
-	(room + Toilet)->down_exit = (room + Library);
-	(room + Toilet)->door_down = true;
-	(room + Toilet)->open_down = false;
+	Toilet->Set_weast_exit(Amus_park);
+	Toilet->Set_down_exit(Library);
+	Toilet->Set_down_door(false);
+	rooms.pushback(Toilet);
 
 	//Library data
-	(room + Library)->name = "\nLIBRARY";
-	(room + Library)->description = "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.";
-	(room + Library)->north_exit = (room + Park_Start);
-	(room + Library)->down_exit = (room + Toilet);
-	(room + Library)->door_down = true;
-	(room + Library)->open_down = false;
-	
+	Library->Set_north_exit(Park_Start);
+	Library->Set_down_exit(Toilet);
+	Library->Set_down_door(false);
+	rooms.pushback(Library);
 }
 
 

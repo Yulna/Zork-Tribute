@@ -26,7 +26,7 @@ public:
 	void operator=(const String &other_str);
 	void operator+=(const String &other_str);
 
-	Vector<String*> tokemize();
+	Vector<String*> tokenize();
 	
 };
 #endif // !__STRING_H__

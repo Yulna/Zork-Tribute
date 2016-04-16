@@ -19,7 +19,6 @@ int main(){
 	World new_world;
 
 	//Set the player current room to the starting room
-	//new_world.player->current_room = new_world.room;
 	new_world.player->current_room = new_world.rooms[0];
 
 	

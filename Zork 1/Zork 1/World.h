@@ -10,7 +10,6 @@ class World
 {
 public:
 	Vector<Room*> rooms;
-	Room* room;
 	Player* player = nullptr;
 
 public:
