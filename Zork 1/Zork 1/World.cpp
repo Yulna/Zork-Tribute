@@ -1,7 +1,7 @@
 #include "World.h"
 #include "Globals.h"
 #include <iostream>
-#define NUM_ROOMS 10
+
 #define CRT_SECURE_NO_WARNINGS
 
 World::World(){
@@ -18,13 +18,15 @@ World::~World(){
 //Giving values and data to the difernt rooms
 void World::Create_world(){
 	
+
+
 	enum Rooms_names{Park_Start=0, Crush_house, Kid_house, Shop, Gross_guy_house, Dark_street, Nrw_street, Amus_park, Toilet, Library};
 
-	Room* Park_Startp;
+	Room* Park_Startp = new Room("PARK", "park description");
 	
 	//Park data
 
-	rooms.pushback(Park_Startp = new Room("PARK", "park description"));
+	rooms.pushback(Park_Startp);
 
 	//	room.pushback(new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north."));
 	(room + Park_Start)->name = "\nPARK";

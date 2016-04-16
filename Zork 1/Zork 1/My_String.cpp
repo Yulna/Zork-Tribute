@@ -47,7 +47,7 @@ void String::write_str(){
 }
 
 void String::print_str() const {
-	printf("%s", the_string);
+	printf("%s\n", the_string);
 };
 
 bool String::empty() const{

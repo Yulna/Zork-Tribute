@@ -2,6 +2,7 @@
 #define __VECTOR_H__
 #include<stdio.h>
 #include <assert.h>
+
 #define BASE_CAPACITY 5
 
 template<class TYPE>
@@ -17,19 +18,21 @@ public:
 	Vector(){
 		vector = new TYPE[capacity];
 	}
-	Vector(unsigned int elements){
+		Vector(unsigned int elements){
 		capacity = elements;
 		vector = new TYPE[capacity];
 	}
-	Vector(const Vector& otherclas){
-		capacity = otherclas.capacity;
-		num_elements = otherclas.num_elements;
+
+	/*
+	Vector(const Vector& other_vector){
+		capacity = other_vector.capacity;
+		num_elements = other_vector.num_elements;
 		vector = new TYPE[capacity];
 		for (unsigned int 0; i < num_elements; i++){
-			vector[i] = otherclas.vector[i];
-		}
-		
+			vector[i] = other_vector.vector[i];
+		};
 	}
+	*/
 	
 	//metode pushback, pushfront
 	void pushback(const TYPE& item){
@@ -65,16 +68,19 @@ public:
 		++num_elements;
 	}
 
-
+	
 	TYPE operator[](unsigned int index) const {
-		assert(index <= num_elements)
+		assert(index <= num_elements);
 			return	vector[index];
 	}
+	
+
 
 	TYPE operator[](unsigned int index){
-		assert(index <= num_elements)
-			return	vector[index];
+		assert(index <= num_elements);
+			return vector[index];
 	}
+	
 	
 
 	bool empty()const{

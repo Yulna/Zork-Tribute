@@ -14,9 +14,8 @@ public:
 
 public:
 	Entity(){};
-	Entity(const char* creating_name, const char* creating_des){
-		String name(creating_name);
-		String description(creating_des);
+	Entity(const char* name, const char* des) : name(name), description(des)
+	{
 	};
 	~Entity(){};
 
