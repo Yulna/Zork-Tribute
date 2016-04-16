@@ -17,11 +17,12 @@ int main(){
 	bool game_on = true;
 	String comand;
 	World new_world;
+	Vector<String*> command_token;
 
 	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.rooms[0];
 
-	
+
 	//print the name of the game and the starting room
 	printf ("                          ***THE SACRED PANTIES***\n");
 
@@ -32,6 +33,7 @@ int main(){
 		printf ("\nWhat do you want to do?");
 
 		comand.write_str();
+
 
 		if (comand=="look" || comand == "l" ){
 			new_world.print_room();

@@ -23,16 +23,16 @@ public:
 		vector = new TYPE[capacity];
 	}
 
-	/*
+	
 	Vector(const Vector& other_vector){
 		capacity = other_vector.capacity;
 		num_elements = other_vector.num_elements;
 		vector = new TYPE[capacity];
-		for (unsigned int 0; i < num_elements; i++){
+		for (unsigned int i = 0; i < num_elements; i++){
 			vector[i] = other_vector.vector[i];
 		};
 	}
-	*/
+	
 	
 	//metode pushback, pushfront
 	void pushback(const TYPE& item){
