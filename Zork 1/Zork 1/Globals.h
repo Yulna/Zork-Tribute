@@ -4,6 +4,7 @@
 
 #define NUM_ROOMS 10
 
+
 enum direction
 {
 	NORTH,

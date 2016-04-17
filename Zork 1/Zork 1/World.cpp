@@ -1,5 +1,6 @@
 #include "World.h"
 #include "Globals.h"
+#include "My_String.h"
 #include <iostream>
 
 #define CRT_SECURE_NO_WARNINGS
@@ -19,23 +20,23 @@ void World::Create_world(){
 
 
 	Room* Park_Start = new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north.");
-	Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
-	Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
-	Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
-	Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
-	Room* Nrw_street = new Room("\nNARROW STREET", "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
-	Room* Crush_house = new Room("\nCRUSH HOUSE", "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.");
-	Room* Amus_park = new Room("\nAMUSMENT PARK", "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.");
-	Room* Toilet = new Room("\nPUBLIC TOILETS", "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.");
-	Room* Library = new Room("\nLIBRARY", "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.");
+	//Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
+	//Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
+	//Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
+	//Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
+	//Room* Nrw_street = new Room("\nNARROW STREET", "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
+	//Room* Crush_house = new Room("\nCRUSH HOUSE", "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.");
+	//Room* Amus_park = new Room("\nAMUSMENT PARK", "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.");
+	//Room* Toilet = new Room("\nPUBLIC TOILETS", "The stinky toilets from the park, one fo them is oddly out of place.\nYou can only go back to the park at weast.");
+	//Room* Library = new Room("\nLIBRARY", "An amaizingly quiet place, all filed with books and a few workaholics with piles of papers in their desks.\nYou can see a creppy guy sitting next to a broken tile or at least it seems so.\nThe only exits leads to the kids park at north.");
 
 
 	
 	//Park data
-	Park_Start->Set_north_exit(Kid_house);
-	Park_Start->Set_south_exit(Library);
+	Park_Start->Set_north_exit(nullptr); //kid_house
+	Park_Start->Set_south_exit(nullptr); //Library
 	rooms.pushback(Park_Start);
-
+	/*
 	//Kid house data
 	Kid_house->Set_north_exit(Shop);
 	Kid_house->Set_south_exit(Park_Start);
@@ -88,6 +89,7 @@ void World::Create_world(){
 	Library->Set_down_exit(Toilet);
 	Library->Set_down_door(false);
 	rooms.pushback(Library);
+	*/
 }
 
 
@@ -306,3 +308,123 @@ void World::close_exit(direction dir){
 			printf ("There is nothing to close below\n");
 	}
 }
+
+
+void World::Game_loop(){
+		String comand;
+		Vector<String*> command_token;
+
+
+		while (game_on){
+			printf("\nWhat do you want to do?");
+
+			comand.write_str();
+
+			//command_token = comand.tokenize();
+
+			if (comand == "look" || comand == "l"){
+				print_room();
+			}
+
+
+			//Clarified version of the help text.
+			/*Comands accepted:
+			Direction: north/south/east/weast/down (n/s/e/w/d)
+			Direction can also be used by: go "direction"
+			Current place data: look (l)
+			Open doors: open "direction" where direction is north/south/east/weast/down
+			Close doors: close "direction" where direction is north/south/east/weast/down
+			End game: quit(q)*/
+
+			else if (comand == "help" || comand == "h"){
+				printf("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n\n");
+			}
+
+			//movement inputs
+			else if (comand == "north" || comand == "n" || comand == "go north" || comand == "go n") {
+				move(NORTH);
+			}
+			else if (comand == "south" || comand == "s" || comand == "go south" || comand == "go s"){
+				move(SOUTH);
+			}
+			else if (comand == "weast" || comand == "w" || comand == "go weast" || comand == "go w"){
+				move(WEAST);
+			}
+			else if (comand == "east" || comand == "e" || comand == "go east" || comand == "go e"){
+				move(EAST);
+			}
+			else if (comand == "down" || comand == "d" || comand == "go down" || comand == "go d"){
+				move(DOWN);
+			}
+			else if (comand == "go"){
+				printf("You must say a direction (north/south/weast/east).\nUse \"h\" or \"help\" to see all available comands\n");
+			}
+
+			//Open doors input
+			else if (comand == "open north" || comand == "o n" || comand == "open n"){
+				open_exit(NORTH);
+			}
+			else if (comand == "open south" || comand == "o s" || comand == "open s"){
+				open_exit(SOUTH);
+			}
+			else if (comand == "open weast" || comand == "o w" || comand == "open w"){
+				open_exit(WEAST);
+			}
+			else if (comand == "open east" || comand == "o e" || comand == "open e"){
+				open_exit(EAST);
+			}
+			else if (comand == "open down" || comand == "o d" || comand == "open d"){
+				open_exit(DOWN);
+			}
+			else if (comand == "open all"){ //open all doors of the room
+				open_exit(NORTH);
+				open_exit(SOUTH);
+				open_exit(WEAST);
+				open_exit(EAST);
+				open_exit(DOWN);
+			}
+
+			else if (comand == "open"){
+				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands\n");
+			}
+
+
+			//Closing doors input
+			//Only already existing doors can be closed
+			else if (comand == "close north" || comand == "c n" || comand == "close n"){
+				close_exit(NORTH);
+			}
+			else if (comand == "close south" || comand == "c s" || comand == "close s"){
+				close_exit(SOUTH);
+			}
+			else if (comand == "close weast" || comand == "c w" || comand == "close w"){
+				close_exit(WEAST);
+			}
+			else if (comand == "close east" || comand == "c e" || comand == "close e"){
+				close_exit(EAST);
+			}
+			else if (comand == "close down" || comand == "c d" || comand == "close d"){
+				close_exit(DOWN);
+			}
+			else if (comand == "close all"){ //close all doors of the room
+				close_exit(NORTH);
+				close_exit(SOUTH);
+				close_exit(WEAST);
+				close_exit(EAST);
+				close_exit(DOWN);
+			}
+			else if (comand == "close"){
+				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available comands\n");
+			}
+
+
+			else if (comand == "quit" || comand == "q")
+				game_on = false;
+
+
+			//Error input mesage
+			else
+				printf("Invalid comand. Use \"h\" or \"help\" to see all available comands\n");
+
+		}
+};

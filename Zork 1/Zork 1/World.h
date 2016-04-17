@@ -9,13 +9,17 @@
 class World
 {
 public:
+	
 	Vector<Room*> rooms;
 	Player* player = nullptr;
+	bool game_on = true;
 
 public:
 	World();
 	~World();
 	void Create_world();
+
+	void Game_loop();
 
 	//Print the current room on the game
 	void print_room() const;
