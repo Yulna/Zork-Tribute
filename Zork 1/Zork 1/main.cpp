@@ -18,7 +18,7 @@ int main(){
 	World new_world;
 	bool game_on = true;
 //	Vector<String*> command_token;
-	
+	new_world.player->max_inv = 0;
 
 	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.rooms[0];

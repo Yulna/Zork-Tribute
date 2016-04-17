@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Globals.h"
 #include "Vector.h"
+#include "Item.h"
 
 
 class World
@@ -11,6 +12,7 @@ class World
 public:
 	
 	Vector<Room*> rooms;
+	Vector<Item*> items;
 	Player* player = nullptr;
 	bool game_on = true;
 

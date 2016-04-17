@@ -3,6 +3,7 @@
 
 
 #define NUM_ROOMS 10
+#define MAX_INVETORY 3
 
 
 enum direction

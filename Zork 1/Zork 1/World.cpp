@@ -90,6 +90,14 @@ void World::Create_world(){
 	Library->Set_down_door(false);
 	rooms.pushback(Library);
 	*/
+
+
+	//Item creation
+
+	Item* Sacred_Panties = new Item("Sacred panties", "Your most valuable possession, it was stolen.");
+
+	Sacred_Panties->set_place(Park_Start);
+	items.pushback(Sacred_Panties);
 }
 
 
@@ -320,7 +328,7 @@ void World::Game_loop(){
 
 			comand.write_str();
 
-			//command_token = comand.tokenize();
+			command_token = comand.tokenize();
 
 			if (comand == "look" || comand == "l"){
 				print_room();
@@ -418,10 +426,43 @@ void World::Game_loop(){
 			}
 
 
+
+			//picking items
+			else if (comand == "pick"){
+				printf("\nWhich item?");
+				comand.write_str();
+				if (player->max_inv < MAX_INVETORY){
+					for (int i = 0; i < items.size(); i++){
+						if (items[i]->name == comand.get_str()){
+							if (items[i]->actual_place == player->current_room){
+								items[i]->actual_place = player;
+								printf("You put the %s into your inventory", items[i]->name);
+								player->max_inv++;
+							}
+							else
+								printf("There isn't such item in this room.");
+						}
+					}
+				}
+				else
+					printf("Your inventory is full.");
+			}
+
+
+			//Show inventory
+			else if (comand == "inventory" || comand == "inv" || comand == "i"){
+				printf("You have this items in your inventory:\n");
+				for (int i = 0; i < items.size(); i++)
+				{
+					if (items[i]->actual_place == player)
+						printf("   %s\n", items[i]->name);
+				}
+			}
+
+			//Quitting the game
 			else if (comand == "quit" || comand == "q")
 				game_on = false;
-
-
+			
 			//Error input mesage
 			else
 				printf("Invalid comand. Use \"h\" or \"help\" to see all available comands\n");

@@ -89,7 +89,7 @@ Vector<String*> String::tokenize(){
 	Vector<String*> ret;
 	char* context = nullptr;
 
-	ret.pushback( new String (strtok_s(the_string, " ", &context)));
+	ret.pushback(new String (strtok_s(the_string, " ", &context)));
 
 	while (*context != '\0'){
 		ret.pushback(new String(strtok_s(NULL, " ", &context)));
