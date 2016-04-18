@@ -20,7 +20,7 @@ void World::Create_world(){
 
 
 	Room* Park_Start = new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north.");
-	//Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
+	Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
 	//Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
 	//Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
 	//Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
@@ -33,15 +33,15 @@ void World::Create_world(){
 
 	
 	//Park data
-	Park_Start->Set_north_exit(nullptr); //kid_house
+	Park_Start->Set_north_exit(Kid_house); //kid_house
 	Park_Start->Set_south_exit(nullptr); //Library
 	rooms.pushback(Park_Start);
-	/*
+	
 	//Kid house data
-	Kid_house->Set_north_exit(Shop);
+	Kid_house->Set_north_exit(nullptr); //shop
 	Kid_house->Set_south_exit(Park_Start);
 	rooms.pushback(Kid_house);
-	
+	/*
 	//Shop data
 	Shop->Set_south_exit(Kid_house);
 	Shop->Set_east_exit(Gross_guy_house);
@@ -95,9 +95,10 @@ void World::Create_world(){
 	//Item creation
 
 	Item* Sacred_Panties = new Item("Sacred panties", "Your most valuable possession, it was stolen.");
-
 	Sacred_Panties->set_place(Park_Start);
 	items.pushback(Sacred_Panties);
+
+
 }
 
 
@@ -328,7 +329,7 @@ void World::Game_loop(){
 
 			comand.write_str();
 
-			command_token = comand.tokenize();
+			//command_token = comand.tokenize();
 
 			if (comand == "look" || comand == "l"){
 				print_room();
@@ -449,15 +450,80 @@ void World::Game_loop(){
 			}
 
 
+			//drop items
+			else if (comand == "drop"){
+				printf("Which item?");
+				comand.write_str();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->name == comand.get_str()){
+						if (items[i]->actual_place == player&&items[i]->equiped == false){
+							items[i]->actual_place = player->current_room;
+							printf("You droped the %s.", items[i]->name);
+							player->max_inv--;
+						}
+						else
+							printf("You don't have that item in your inventory");
+					}
+				}
+			}
+
 			//Show inventory
 			else if (comand == "inventory" || comand == "inv" || comand == "i"){
 				printf("You have this items in your inventory:\n");
 				for (int i = 0; i < items.size(); i++)
 				{
-					if (items[i]->actual_place == player)
+					if (items[i]->actual_place == player&&items[i]->equiped == false)
 						printf("   %s\n", items[i]->name);
 				}
 			}
+
+			//equip item
+			else if (comand == "equip"){
+				printf("Which item?");
+				comand.write_str();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->name == comand.get_str()){
+						if (items[i]->actual_place == player){
+							if (items[i]->equiped == false){
+								items[i]->equiped = true;
+								printf("You equiped the %s.", items[i]->name);
+								player->max_inv--;
+							}
+							else
+								printf("You already have equipped it.");
+						}
+						else
+							printf("You don't have that item in your inventory.");
+					}
+				}
+			}
+
+
+			//unequip item
+			else if (comand == "unequip"){
+				printf("Which item?");
+				comand.write_str();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->name == comand.get_str()){
+						if (items[i]->actual_place == player){
+							if (items[i]->equiped == true){
+								items[i]->equiped = false;
+								printf("You unequiped the %s.", items[i]->name);
+								player->max_inv--;
+							}
+							else
+								printf("You don't have this item euipped.");
+						}
+						else
+							printf("You don't have that item in your inventory.");
+					}
+				}
+			}
+
+
+			//stats
+
+			
 
 			//Quitting the game
 			else if (comand == "quit" || comand == "q")

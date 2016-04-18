@@ -35,7 +35,7 @@ const char* String::get_str() const{
 	return the_string;
 };
 void String::write_str(){
-	char input_string[20];
+	char input_string[50];
 	gets_s(input_string);
 	unsigned int cap = strlen(input_string)+1;
 	if (cap > max_size){
