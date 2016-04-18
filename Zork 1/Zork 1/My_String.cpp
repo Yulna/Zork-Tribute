@@ -46,9 +46,6 @@ void String::write_str(){
 	strcpy_s(the_string, max_size, input_string);
 }
 
-void String::print_str() const {
-	printf("%s\n", the_string);
-};
 
 bool String::empty() const{
 	return the_string[0] == '\0';
@@ -85,12 +82,12 @@ void String::operator+=(const String &other_str){
 
 //Tokonize
 //Size depending in how many  words
-void String::tokenize(Vector<String*> &tokens){
+void String::tokenize(Vector<String> &tokens){
 
 	char* context = nullptr;
-	tokens.pushback(new String(strtok_s(the_string, " ", &context)));
+	tokens.pushback(String(strtok_s(the_string, " ", &context)));
 	while (*context != '\0'){
-		tokens.pushback(new String(strtok_s(NULL, " ", &context)));
+		tokens.pushback(String(strtok_s(NULL, " ", &context)));
 	}
 
 };
