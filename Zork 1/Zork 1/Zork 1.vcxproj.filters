@@ -30,9 +30,6 @@
     <ClCompile Include="My_String.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">

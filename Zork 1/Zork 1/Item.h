@@ -11,12 +11,10 @@ public:
 	bool equiped = false;
 
 public:
-	Item(const char* name, const char* des) : Entity(name, des){};
-	
-	void set_place(Entity* place){
+	Item(const char* name, const char* des, Entity* place) : Entity(name, des){
 		actual_place = place;
 	};
-
+	
 };
 
 #endif // !__ITEM_H__

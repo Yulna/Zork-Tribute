@@ -9,7 +9,7 @@ class Player : public Entity
 {
 public:
 	Room* current_room;
-	int max_inv;
+	int used_inv;
 	bool item_equiped = false;
 	Dere_states state = No_dere;
 

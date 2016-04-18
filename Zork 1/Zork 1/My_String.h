@@ -20,6 +20,7 @@ public:
 	const char* get_str() const;
 	void write_str();
 
+	void clear();
 	bool empty() const;
 	bool operator == (const String& str) const;
 	void operator=(const String &other_str);

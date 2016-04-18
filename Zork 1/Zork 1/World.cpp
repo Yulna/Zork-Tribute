@@ -1,5 +1,5 @@
 #include "World.h"
-
+#include <stdlib.h>
 
 World::World(){
 	player = new Player;
@@ -100,8 +100,7 @@ void World::Create_world(){
 
 	//Item creation
 
-	Item* Sacred_Panties = new Item("Sacred panties", "Your most valuable possession, it was stolen.");
-	Sacred_Panties->set_place(Park_Start);
+	Item* Sacred_Panties = new Item("Panties", "Your most valuable possession, it was stolen.", Park_Start);
 	items.pushback(Sacred_Panties);
 }
 
@@ -336,7 +335,7 @@ void World::Game_loop(){
 
 			comand.tokenize(command_token);
 
-			if (comand == "look" || command_token[0] == "l"){
+			if (command_token[0] == "look" || command_token[0] == "l"){
 				print_room();
 			}
 
@@ -355,19 +354,19 @@ void World::Game_loop(){
 			}
 
 			//movement inputs
-			else if (command_token[0] == "north" || command_token[0] == "n" || command_token[0] == "go north" || command_token[0] == "go n") {
+			else if (command_token[0] == "north" || command_token[0] == "n" || (command_token[0] == "go" && command_token[1] == "north") || (command_token[0] == "go" && command_token[1] == "n")) {
 				move(NORTH);
 			}
-			else if (command_token[0] == "south" || command_token[0] == "s" || command_token[0] == "go south" || command_token[0] == "go s"){
+			else if (command_token[0] == "south" || command_token[0] == "s" || (command_token[0] == "go" && command_token[1] == "south") || (command_token[0] == "go" && command_token[1] == "s")){
 				move(SOUTH);
 			}
-			else if (command_token[0] == "weast" || command_token[0] == "w" || command_token[0] == "go weast" || command_token[0] == "go w"){
+			else if (command_token[0] == "weast" || command_token[0] == "w" || (command_token[0] == "go" && command_token[1] == "weast") || (command_token[0] == "go" && command_token[1] == "w")){
 				move(WEAST);
 			}
-			else if (command_token[0] == "east" || command_token[0] == "e" || command_token[0] == "go east" || command_token[0] == "go e"){
+			else if (command_token[0] == "east" || command_token[0] == "e" || (command_token[0] == "go" && command_token[1] == "east") || (command_token[0] == "go" && command_token[1] == "e")){
 				move(EAST);
 			}
-			else if (command_token[0] == "down" || command_token[0] == "d" || command_token[0] == "go down" || command_token[0] == "go d"){
+			else if (command_token[0] == "down" || command_token[0] == "d" || (command_token[0] == "go" && command_token[1] == "down") || (command_token[0] == "go" && command_token[1] == "d")){
 				move(DOWN);
 			}
 			else if (command_token[0] == "go"){
@@ -375,75 +374,76 @@ void World::Game_loop(){
 			}
 
 			//Open doors input
-			else if (command_token[0] == "open north" || command_token[0] == "o n" || command_token[0] == "open n"){
-				open_exit(NORTH);
-			}
-			else if (command_token[0] == "open south" || command_token[0] == "o s" || command_token[0] == "open s"){
-				open_exit(SOUTH);
-			}
-			else if (command_token[0] == "open weast" || command_token[0] == "o w" || command_token[0] == "open w"){
-				open_exit(WEAST);
-			}
-			else if (command_token[0] == "open east" || command_token[0] == "o e" || command_token[0] == "open e"){
-				open_exit(EAST);
-			}
-			else if (command_token[0] == "open down" || command_token[0] == "o d" || command_token[0] == "open d"){
-				open_exit(DOWN);
-			}
-			else if (command_token[0] == "open all"){ //open all doors of the room
-				open_exit(NORTH);
-				open_exit(SOUTH);
-				open_exit(WEAST);
-				open_exit(EAST);
-				open_exit(DOWN);
-			}
-
-			else if (command_token[0] == "open"){
-				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
+			else if (command_token[0] == "open" || command_token[0] == "o"){
+				if (command_token[1] == "north" || command_token[1] == "n"){
+					open_exit(NORTH);
+				}
+				else if (command_token[1] == "south" || command_token[1] == "s"){
+					open_exit(SOUTH);
+				}
+				else if (command_token[1] == "weast" || command_token[1] == "w"){
+					open_exit(WEAST);
+				}
+				else if (command_token[1] == "east" || command_token[1] == "e"){
+					open_exit(EAST);
+				}
+				else if (command_token[1] == "down" || command_token[1] == "d"){
+					open_exit(DOWN);
+				}
+				else if (command_token[1] == "all"){ //open all doors of the room
+					open_exit(NORTH);
+					open_exit(SOUTH);
+					open_exit(WEAST);
+					open_exit(EAST);
+					open_exit(DOWN);
+				}
+				else{
+					printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
+				}
 			}
 
 
 			//Closing doors input
 			//Only already existing doors can be closed
-			else if (command_token[0] == "close north" || command_token[0] == "c n" || command_token[0] == "close n"){
-				close_exit(NORTH);
+			else if (command_token[0] == "close" || command_token[0] == "c"){
+				if (command_token[1] == "north" || command_token[1] == "n"){
+					close_exit(NORTH);
+				}
+				else if (command_token[1] == "south" || command_token[1] == "s"){
+					close_exit(SOUTH);
+				}
+				else if (command_token[1] == "weast" || command_token[1] == "w"){
+					close_exit(WEAST);
+				}
+				else if (command_token[1] == "east" || command_token[1] == "e"){
+					close_exit(EAST);
+				}
+				else if (command_token[1] == "down" || command_token[1] == "d"){
+					close_exit(DOWN);
+				}
+				else if (command_token[1] == "all"){ //close all doors of the room
+					close_exit(NORTH);
+					close_exit(SOUTH);
+					close_exit(WEAST);
+					close_exit(EAST);
+					close_exit(DOWN);
+				}
+				else if (command_token[0] == "close"){
+					printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
+				}
 			}
-			else if (command_token[0] == "close south" || command_token[0] == "c s" || command_token[0] == "close s"){
-				close_exit(SOUTH);
-			}
-			else if (command_token[0] == "close weast" || command_token[0] == "c w" || command_token[0] == "close w"){
-				close_exit(WEAST);
-			}
-			else if (command_token[0] == "close east" || command_token[0] == "c e" || command_token[0] == "close e"){
-				close_exit(EAST);
-			}
-			else if (command_token[0] == "close down" || command_token[0] == "c d" || command_token[0] == "close d"){
-				close_exit(DOWN);
-			}
-			else if (command_token[0] == "close all"){ //close all doors of the room
-				close_exit(NORTH);
-				close_exit(SOUTH);
-				close_exit(WEAST);
-				close_exit(EAST);
-				close_exit(DOWN);
-			}
-			else if (command_token[0] == "close"){
-				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
-			}
-
 
 
 			//picking items
-			else if (comand == "pick"){
-				printf("\nWhich item?");
-				comand.write_str();
-				if (player->max_inv < MAX_INVETORY){
+			else if (command_token[0] == "pick"){
+			
+				if (player->used_inv < MAX_INVENTORY){
 					for (int i = 0; i < items.size(); i++){
-						if (items[i]->name == comand.get_str()){
+						if (items[i]->name == command_token[1]){
 							if (items[i]->actual_place == player->current_room){
 								items[i]->actual_place = player;
 								printf("You put the %s into your inventory", items[i]->name);
-								player->max_inv++;
+								player->used_inv++;
 							}
 							else
 								printf("There isn't such item in this room.");
@@ -456,15 +456,13 @@ void World::Game_loop(){
 
 
 			//drop items
-			else if (comand == "drop"){
-				printf("Which item?");
-				comand.write_str();
+			else if (command_token[0] == "drop"){
 				for (int i = 0; i < items.size(); i++){
-					if (items[i]->name == comand.get_str()){
+					if (items[i]->name == command_token[1]){
 						if (items[i]->actual_place == player&&items[i]->equiped == false){
 							items[i]->actual_place = player->current_room;
 							printf("You droped the %s.", items[i]->name);
-							player->max_inv--;
+							player->used_inv--;
 						}
 						else
 							printf("You don't have that item in your inventory");
@@ -473,7 +471,7 @@ void World::Game_loop(){
 			}
 
 			//Show inventory
-			else if (comand == "inventory" || comand == "inv" || comand == "i"){
+			else if (command_token[0] == "inventory" || command_token[0] == "inv" || command_token[0] == "i"){
 				printf("You have this items in your inventory:\n");
 				for (int i = 0; i < items.size(); i++)
 				{
@@ -483,17 +481,15 @@ void World::Game_loop(){
 			}
 
 			//equip item
-			else if (comand == "equip"){
+			else if (command_token[0] == "equip"){
 				if (player->item_equiped != true){
-					printf("Which item?");
-					comand.write_str();
 					for (int i = 0; i < items.size(); i++){
-						if (items[i]->name == comand.get_str()){
+						if (items[i]->name == command_token[1]){
 							if (items[i]->actual_place == player){
 								if (items[i]->equiped == false){
 									items[i]->equiped = true;
 									printf("You equiped the %s.", items[i]->name);
-									player->max_inv--;
+									player->used_inv--;
 								}
 								else
 									printf("You already have equipped it.");
@@ -509,17 +505,15 @@ void World::Game_loop(){
 
 
 			//unequip item
-			else if (comand == "unequip"){
+			else if (command_token[0] == "unequip"){
 				if (player->item_equiped == true){
-					printf("Which item?");
-					comand.write_str();
 					for (int i = 0; i < items.size(); i++){
-						if (items[i]->name == comand.get_str()){
+						if (items[i]->name == command_token[1]){
 							if (items[i]->actual_place == player){
 								if (items[i]->equiped == true){
 									items[i]->equiped = false;
 									printf("You unequiped the %s.", items[i]->name);
-									player->max_inv--;
+									player->used_inv--;
 								}
 								else
 									printf("You don't have this item euipped.");
@@ -570,7 +564,7 @@ void World::Game_loop(){
 				//Kudere -> Pile of books
 			
 			}
-
+			
 			command_token.clean();
 	}	//while end
 };

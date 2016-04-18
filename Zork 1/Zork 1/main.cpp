@@ -14,7 +14,7 @@
 int main(){
 	ReportMemoryLeaks();
 	World new_world;
-	new_world.player->max_inv = 0;
+	new_world.player->used_inv = 0;
 
 	//Set the player current room to the starting room
 	new_world.player->current_room = new_world.rooms[0];

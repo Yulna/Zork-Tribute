@@ -46,6 +46,9 @@ void String::write_str(){
 	strcpy_s(the_string, max_size, input_string);
 }
 
+void String::clear(){
+	the_string[0] = '\0';
+};
 
 bool String::empty() const{
 	return the_string[0] == '\0';

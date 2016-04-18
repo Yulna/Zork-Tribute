@@ -2,7 +2,7 @@
 #define __GLOBALS__
 
 #define MAX_ROOMS 10
-#define MAX_INVETORY 3
+#define MAX_INVENTORY 3
 
 
 enum Dere_states{
