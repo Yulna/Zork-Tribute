@@ -4,7 +4,6 @@
 Repository for my Zork like game.
 ##How to play
 
-IMPORTAT: comands MUST be written all in lower case letters otherwise they will not be reconized
 
 You start in a kids park at a normal town, move around using the compas directions.
 Below tou have a list of all the possible comands.
@@ -15,7 +14,22 @@ Current place data: look (l)
 Open doors: open "direction" where direction is north/south/east/weast  
 Close doors: close "direction" where direction is north/south/east/weast  
 Also possible to close or open all doors in the area by using the open/close all commands
+Pick/drop item: pick/drops the item of choice
+Show inventory: inventory/inv/i
+Equip/unequip item: equips/unequips the item of choice
+Put/Get item into/from item: Manages storage for container items
+Stats: See your stats
 End game: quit(q)  
+
+The stats are a tranformation of the character, they will only appear when the correct item is equipped, if any of the 4 diferent states are active 
+nothing will show at using the stats command.
+
+Stats: (Those stats aren't functional at the moment)
+
+Yandere-> Able to kill 
+Tsundere->Disbale annoying kid
+Kuudere->Disable Gross guy
+Dendere -> Able to buy from the shop
 
 To see a map of the town you can go to the game github wiki: https://github.com/Yulna/Zork-Tribute/wiki  
 In the game there are 2 hidden closed passages that are not shown in the rooms descritions, one from the library to the toilets and another one to the crush house to the narrow street. Thery are marked with a discontinuous line in the wiki map.
@@ -24,8 +38,9 @@ In the game there are 2 hidden closed passages that are not shown in the rooms d
 Joan Pareja: https://github.com/Yulna
 
 ##Changelog
-v1.0.1-Updated some wrong descritions   
-v1.0-First release
+v0.5- Secon release
+v0.0.1-Updated some wrong descritions   
+v0.0-First release
 </content>
   <tabTrigger></tabTrigger>
 </snippet>

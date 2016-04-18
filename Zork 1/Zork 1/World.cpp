@@ -378,10 +378,11 @@ void World::Game_loop(){
 			Show inventory: inventory/inv/i
 			Equip/unequip item: equips/unequips the item of choice
 			Put/Get item into/from item: Manages storage for container items
+			Stats: See your stats
 			End game: quit(q)*/
 
 			else if (command_token[0] == ("help") || command_token[0] == "h"){
-				printf("\nComands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nPick/drop item: pick/drops the item of choice\nShow inventory: inventory/inv/i\nEquip/unequip item: equips/unequips the item of choice\nPut/Get item into/from item: Manages storage for container items\nEnd game: quit(q) \n\n");
+				printf("\nComands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nPick/drop item: pick/drops the item of choice\nShow inventory: inventory/inv/i\nEquip/unequip item: equips/unequips the item of choice\nPut/Get item into/from item: Manages storage for container items\nStats: See your stats\nEnd game: quit(q) \n\n");
 			}
 
 			//movement inputs
@@ -642,9 +643,18 @@ void World::Game_loop(){
 
 			//Changing player stats depending on items equiped
 			for (int i = 0; i < items.size(); i++){
-				if (items[i]->name == "Sacred panties"&& items[i]->equiped == true)
+				if (items[i]->name == "Panties"&& items[i]->equiped == true)
 					player->state = All_dere;
 					
+				if (items[i]->name == "Sandwich"&& items[i]->equiped == true)
+					player->state = Yandere;
+				if (items[i]->name == "Tissue"&& items[i]->equiped == true)
+					player->state = Tsundere;
+				if (items[i]->name == "Diary"&& items[i]->equiped == true)
+					player->state = Dendere;
+				if (items[i]->name == "Books"&& items[i]->equiped == true)
+					player->state = Kuudere;
+				
 				//Yandere -> Pice of sandwich
 				//Tsundere -> Used tissue
 				//Dendere ->Crush diary
