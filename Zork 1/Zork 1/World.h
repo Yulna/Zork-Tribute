@@ -1,11 +1,13 @@
 #ifndef WORLD
 #define WORLD
-#include "Room.h"
-#include "Player.h"
+
 #include "Globals.h"
 #include "Vector.h"
-#include "Item.h"
 
+
+class Room;
+class Item;
+class Player;
 
 class World
 {

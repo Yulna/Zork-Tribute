@@ -7,6 +7,7 @@
 #include "World.h"
 #include "My_String.h"
 #include "Globals.h"
+#include "Player.h"
 
 
 

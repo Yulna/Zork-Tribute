@@ -1,4 +1,7 @@
 #include "World.h"
+#include "Room.h"
+#include "Player.h"
+#include "Item.h"
 #include <stdlib.h>
 
 World::World(){
@@ -100,11 +103,27 @@ void World::Create_world(){
 
 	//Item creation
 
-	Item* Sacred_Panties = new Item("Panties", "Your most valuable possession, it was stolen.", Park_Start);
+	Item* Sacred_Panties = new Item("Panties", "Your most valuable possession, it was stolen.", Library);
 	items.pushback(Sacred_Panties);
 	Item* Backpack = new Item("Backpack", "An incredible object to store things", Park_Start);
 	Backpack->Set_to_container();
 	items.pushback(Backpack);
+	Item* Snack = new Item("Snack", "Simple snack, you can eat it or exchange it for other stuff.", Shop);
+	items.pushback(Snack);
+	Item* Sandwich = new Item("Sandwich", "The first thing you got from your crush.", Dark_street);
+	items.pushback(Sandwich);
+	Item* Tissue = new Item("Tissue", "Another of your items from your crush.", Amus_park);
+	items.pushback(Tissue);
+	Item* Wine = new Item("Wine", "Alcoholic drink.", Shop);
+	items.pushback(Wine);
+	Item* Diary = new Item("Diary", "Your crush diary, if you read it you’ll be embarrassed.", Crush_house);
+	items.pushback(Diary);
+	Item* Books = new Item("Books", "This books make you look smarter and cooler", Library);
+	items.pushback(Books);
+	Item* Candy = new Item("Candy", "A sweet meal.", Shop);
+	items.pushback(Candy);
+	Item* Underwear = new Item("Underwear", "Female underwear made for a special day", Gross_guy_house);
+	items.pushback(Underwear);
 }
 
 
@@ -355,10 +374,14 @@ void World::Game_loop(){
 			Current place data: look (l)
 			Open doors: open "direction" where direction is north/south/east/weast/down
 			Close doors: close "direction" where direction is north/south/east/weast/down
+			Pick/drop item: pick/drops the item of choice
+			Show inventory: inventory/inv/i
+			Equip/unequip item: equips/unequips the item of choice
+			Put/Get item into/from item: Manages storage for container items
 			End game: quit(q)*/
 
 			else if (command_token[0] == ("help") || command_token[0] == "h"){
-				printf("\nComands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n\n");
+				printf("\nComands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nPick/drop item: pick/drops the item of choice\nShow inventory: inventory/inv/i\nEquip/unequip item: equips/unequips the item of choice\nPut/Get item into/from item: Manages storage for container items\nEnd game: quit(q) \n\n");
 			}
 
 			//movement inputs
@@ -483,8 +506,10 @@ void World::Game_loop(){
 				printf("You have this items in your inventory:\n");
 				for (int i = 0; i < items.size(); i++)
 				{
-					if (items[i]->actual_place == player&&items[i]->equiped == false)
-						printf("   %s\n", items[i]->name);
+					if (items[i]->actual_place == player&&items[i]->equiped == false){
+						printf("   %s:", items[i]->name);
+						printf(" %s\n", items[i]->description);
+					}
 				}
 				
 				for (int i = 0; i < items.size(); i++)
@@ -521,7 +546,7 @@ void World::Game_loop(){
 
 			//unequip item
 			else if (command_token[0] == "unequip"){
-				if (player->item_equiped == true){
+				if (player->item_equiped == true&& player->used_inv < MAX_INVENTORY){
 					for (int i = 0; i < items.size(); i++){
 						if (items[i]->name == command_token[1]){
 							if (items[i]->actual_place == player){
@@ -529,7 +554,7 @@ void World::Game_loop(){
 									items[i]->equiped = false;
 									player->item_equiped = false;
 									printf("You unequiped the %s.", items[i]->name);
-									player->used_inv--;
+									player->used_inv++;
 								}
 								else
 									printf("You don't have this item equipped.");
@@ -540,7 +565,7 @@ void World::Game_loop(){
 					}
 				}
 				else
-					printf("You don't have anything equipped to unequip.");
+					printf("You can't do that.");
 			}
 
 
@@ -569,6 +594,7 @@ void World::Game_loop(){
 								items[j]->actual_place = items[i];
 								printf("You put %s", items[j]->name);
 								printf(" into %s.", items[i]->name);
+								player->used_inv--;
 								success = true;
 							}
 						}
@@ -583,14 +609,17 @@ void World::Game_loop(){
 			else if (command_token[0] == "get"&&command_token[2] == "from"){
 				int i, j;
 				bool success = false;
-				for (i = 0; i < items.size(); i++){
-					if (items[i]->container&&command_token[3] == items[i]->name&&items[i]->actual_place == player){
-						for (j = 0; j < items.size(); j++){
-							if (items[j]->name == command_token[1] && items[j]->actual_place == items[i]){
-								items[j]->actual_place = player;
-								printf("You got %s", items[j]->name);
-								printf(" from %s.", items[i]->name);
-								success = true;
+				if (player->used_inv < MAX_INVENTORY){
+					for (i = 0; i < items.size(); i++){
+						if (items[i]->container&&command_token[3] == items[i]->name&&items[i]->actual_place == player){
+							for (j = 0; j < items.size(); j++){
+								if (items[j]->name == command_token[1] && items[j]->actual_place == items[i]){
+									items[j]->actual_place = player;
+									printf("You got %s", items[j]->name);
+									printf(" from %s.", items[i]->name);
+									player->used_inv++;
+									success = true;
+								}
 							}
 						}
 					}
