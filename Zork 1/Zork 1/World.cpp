@@ -102,6 +102,9 @@ void World::Create_world(){
 
 	Item* Sacred_Panties = new Item("Panties", "Your most valuable possession, it was stolen.", Park_Start);
 	items.pushback(Sacred_Panties);
+	Item* Backpack = new Item("Backpack", "An incredible object to store things", Park_Start);
+	Backpack->Set_to_container();
+	items.pushback(Backpack);
 }
 
 
@@ -337,6 +340,11 @@ void World::Game_loop(){
 
 			if (command_token[0] == "look" || command_token[0] == "l"){
 				print_room();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->actual_place == player->current_room)	{
+						printf("You see a %s in this room.\n", items[i]->name);
+					}
+				}
 			}
 
 
@@ -478,6 +486,12 @@ void World::Game_loop(){
 					if (items[i]->actual_place == player&&items[i]->equiped == false)
 						printf("   %s\n", items[i]->name);
 				}
+				
+				for (int i = 0; i < items.size(); i++)
+				{
+					if (items[i]->actual_place == player&&items[i]->equiped == true)
+						printf("You have  %s equiped\n", items[i]->name);
+				}
 			}
 
 			//equip item
@@ -488,6 +502,7 @@ void World::Game_loop(){
 							if (items[i]->actual_place == player){
 								if (items[i]->equiped == false){
 									items[i]->equiped = true;
+									player->item_equiped = true;
 									printf("You equiped the %s.", items[i]->name);
 									player->used_inv--;
 								}
@@ -512,11 +527,12 @@ void World::Game_loop(){
 							if (items[i]->actual_place == player){
 								if (items[i]->equiped == true){
 									items[i]->equiped = false;
+									player->item_equiped = false;
 									printf("You unequiped the %s.", items[i]->name);
 									player->used_inv--;
 								}
 								else
-									printf("You don't have this item euipped.");
+									printf("You don't have this item equipped.");
 							}
 							else
 								printf("You don't have that item in your inventory.");
@@ -529,7 +545,7 @@ void World::Game_loop(){
 
 
 			//stats
-			else if (comand == "stats"){
+			else if (command_token[0] == "stats"){
 				printf("Yulna's stats:\n");
 				if (player->state == Yandere || player->state == All_dere)
 					printf("\nYou feel the Yandere power spreading through your veins.");
@@ -542,7 +558,49 @@ void World::Game_loop(){
 			}
 			
 
-						
+			//Put item into item
+			else if (command_token[0] == "put"&&command_token[2] == "into"){
+				int i, j;
+				bool success = false;
+				for (i = 0; i < items.size(); i++){
+					if (items[i]->container&&command_token[3] == items[i]->name&&items[i]->actual_place == player){
+						for (j = 0; j < items.size(); j++){
+							if (items[j]->name == command_token[1] && items[j]->actual_place == player){
+								items[j]->actual_place = items[i];
+								printf("You put %s", items[j]->name);
+								printf(" into %s.", items[i]->name);
+								success = true;
+							}
+						}
+					}
+				}
+				if (success == false)
+					printf("You can't do that.");
+			}
+
+
+			//Get item from
+			else if (command_token[0] == "get"&&command_token[2] == "from"){
+				int i, j;
+				bool success = false;
+				for (i = 0; i < items.size(); i++){
+					if (items[i]->container&&command_token[3] == items[i]->name&&items[i]->actual_place == player){
+						for (j = 0; j < items.size(); j++){
+							if (items[j]->name == command_token[1] && items[j]->actual_place == items[i]){
+								items[j]->actual_place = player;
+								printf("You got %s", items[j]->name);
+								printf(" from %s.", items[i]->name);
+								success = true;
+							}
+						}
+					}
+				}
+				if (success == false)
+					printf("You can't do that.");
+			}
+
+
+			
 
 			//Quitting the game
 			else if (comand == "quit" || comand == "q")

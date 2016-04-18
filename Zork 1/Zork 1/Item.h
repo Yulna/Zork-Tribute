@@ -14,7 +14,9 @@ public:
 	Item(const char* name, const char* des, Entity* place) : Entity(name, des){
 		actual_place = place;
 	};
-	
+	void Set_to_container(){
+		container = true;
+	}
 };
 
 #endif // !__ITEM_H__
