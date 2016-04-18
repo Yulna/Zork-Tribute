@@ -21,6 +21,7 @@ public:
 	~World();
 	void Create_world();
 
+
 	void Game_loop();
 
 	//Print the current room on the game

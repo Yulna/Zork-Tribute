@@ -85,14 +85,12 @@ void String::operator+=(const String &other_str){
 
 //Tokonize
 //Size depending in how many  words
-Vector<String*> String::tokenize(){
-	Vector<String*> ret;
+void String::tokenize(Vector<String*> &tokens){
+
 	char* context = nullptr;
-
-	ret.pushback(new String (strtok_s(the_string, " ", &context)));
-
+	tokens.pushback(new String(strtok_s(the_string, " ", &context)));
 	while (*context != '\0'){
-		ret.pushback(new String(strtok_s(NULL, " ", &context)));
+		tokens.pushback(new String(strtok_s(NULL, " ", &context)));
 	}
-	return ret;
+
 };

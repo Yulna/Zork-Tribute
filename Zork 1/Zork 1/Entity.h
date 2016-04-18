@@ -16,7 +16,7 @@ public:
 	Entity(){};
 	Entity(const char* name, const char* des) : name(name), description(des)
 	{};
-	~Entity(){};
+	virtual ~Entity() {};
 
 };
 

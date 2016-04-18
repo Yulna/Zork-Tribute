@@ -2,14 +2,13 @@
 //Author: Joan Pareja Piñol 
 //Github: https://github.com/Yulna/Zork-Tribute
 
-#define CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <iostream>
-#include "World.h"
-#include "Globals.h"
-#include "My_String.h"
-
 #include "MemLeaks.h"
+#include <stdio.h>
+#include "World.h"
+#include "My_String.h"
+#include "Globals.h"
+
+
 
 
 int main(){

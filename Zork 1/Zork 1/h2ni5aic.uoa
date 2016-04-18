@@ -1,5 +1,9 @@
 #include "World.h"
+#include "Globals.h"
+#include "My_String.h"
+#include <iostream>
 
+#define CRT_SECURE_NO_WARNINGS
 
 World::World(){
 	player = new Player;
@@ -7,14 +11,6 @@ World::World(){
 
 };
 World::~World(){
-	for (int i = 0; i < rooms.size(); i++){
-		delete rooms[i];
-	}
-	rooms.clean();
-	for (int i = 0; i < items.size(); i++){
-		delete items[i];
-	}
-	items.clean();
 	delete player;
 }
 
@@ -25,9 +21,9 @@ void World::Create_world(){
 
 	Room* Park_Start = new Room("\nPARK", "A simple kids park, the perfect home for a homless person like you. \nYou see a library to the south, and regular house at the north.");
 	Room* Kid_house = new Room("\nANNOYING KID HOUSE", "The place where that kid that never lets you take a nap lives. \nYou see a shop at the north and you're beatiful home (the park) at the south.");
-	Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
-	Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
-	Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
+	//Room* Shop = new Room("\nREGULAR SHOP","A simple, regular, normal shop even the salesman is plain. \nAt least you can still buy some groceries, or steal them. \nYou see a normal house to south and a house with a strange aura to east.");
+	//Room* Gross_guy_house = new Room("\nGROSS CROSS-DRESSING GUY HOUSE","An overly decored house with a beatiful and sparkling garden.\nFor some reason can decide if the decoratoins give a femenine or masculine look.To south there is a scary and dark street, contrary to the east exit where you \ncan see a beatiful amusment park.");
+	//Room* Dark_street = new Room("\nDARK STREET", "The meeting place of all the gangs an delinquents of the town.\nIt will be better to go back an not disturb them too much.\nYou can go back at the werid house to north, there also seems to be a closed \nexit to south.");
 	//Room* Nrw_street = new Room("\nNARROW STREET", "You didn't even know that this street was in your town.\nIt's filled with empty bottles there's even one drunken man laying down on the floor, for some reason most of the bottles are piled up at the east side. It may be becasue the magnetic field of earth?\nThe only way out is going back at the dark street to north.");
 	//Room* Crush_house = new Room("\nCRUSH HOUSE", "Your personal sanctuary, you've dreamed so many times of coming here but never \nmustered enough courage to do it.\nAll but an oddly placed bush at the weast seems like heaven to you.\nThe only way out is at north to the amusment park.");
 	//Room* Amus_park = new Room("\nAMUSMENT PARK", "The average amusment park, full with young lovely-dovey couples. \nYou can sense a heavnly feeling coming from the south exit, at east you can findthe toilets if you need to use them.");
@@ -42,29 +38,27 @@ void World::Create_world(){
 	rooms.pushback(Park_Start);
 	
 	//Kid house data
-	Kid_house->Set_north_exit(Shop); //shop
+	Kid_house->Set_north_exit(nullptr); //shop
 	Kid_house->Set_south_exit(Park_Start);
 	rooms.pushback(Kid_house);
-	
+	/*
 	//Shop data
 	Shop->Set_south_exit(Kid_house);
-	Shop->Set_east_exit(Gross_guy_house);//Gross guy house
+	Shop->Set_east_exit(Gross_guy_house);
 	rooms.pushback(Shop);
 
-	
 	//Cross-dressing guy house data
-	Gross_guy_house->Set_south_exit(nullptr); //dark street
+	Gross_guy_house->Set_south_exit(Dark_street);
 	Gross_guy_house->Set_weast_exit(Shop);
-	Gross_guy_house->Set_east_exit(nullptr); //Amus park
+	Gross_guy_house->Set_east_exit(Amus_park);
 	rooms.pushback(Gross_guy_house);
 
-	
 	//Dark street data
 	Dark_street->Set_north_exit(Gross_guy_house);
-	Dark_street->Set_south_exit(nullptr);	//nrw_street
+	Dark_street->Set_south_exit(Nrw_street);
 	Dark_street->Set_south_door(false);				//Send the state of the door false==door closed
 	rooms.pushback(Dark_street);
-	/*
+
 	//Narrow street data
 	Nrw_street->Set_north_exit(Dark_street);
 	Nrw_street->Set_east_exit(Crush_house);
@@ -103,8 +97,9 @@ void World::Create_world(){
 	Item* Sacred_Panties = new Item("Sacred panties", "Your most valuable possession, it was stolen.");
 	Sacred_Panties->set_place(Park_Start);
 	items.pushback(Sacred_Panties);
-}
 
+
+}
 
 
 //print the current room on the game
@@ -334,7 +329,7 @@ void World::Game_loop(){
 
 			comand.write_str();
 
-			comand.tokenize(command_token);
+			//command_token = comand.tokenize();
 
 			if (comand == "look" || comand == "l"){
 				print_room();
@@ -350,8 +345,8 @@ void World::Game_loop(){
 			Close doors: close "direction" where direction is north/south/east/weast/down
 			End game: quit(q)*/
 
-			else if (command_token[0]->operator== ("help") || comand == "h"){
-				printf("\nComands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n\n");
+			else if (comand == "help" || comand == "h"){
+				printf("Comands accepted:\n\nDirection: north/south/east/weast/down (n/s/e/w/d)\nDirection can also be used by: go \"direction\"\nCurrent place data: look (l)\nOpen doors: open \"direction\" where direction is north/south/east/weast/down\nClose doors: close \"direction\" where direction is north/south/east/weast/down\nEnd game: quit(q) \n\n");
 			}
 
 			//movement inputs
@@ -484,71 +479,60 @@ void World::Game_loop(){
 
 			//equip item
 			else if (comand == "equip"){
-				if (player->item_equiped != true){
-					printf("Which item?");
-					comand.write_str();
-					for (int i = 0; i < items.size(); i++){
-						if (items[i]->name == comand.get_str()){
-							if (items[i]->actual_place == player){
-								if (items[i]->equiped == false){
-									items[i]->equiped = true;
-									printf("You equiped the %s.", items[i]->name);
-									player->max_inv--;
-								}
-								else
-									printf("You already have equipped it.");
+				printf("Which item?");
+				comand.write_str();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->name == comand.get_str()){
+						if (items[i]->actual_place == player){
+							if (items[i]->equiped == false){
+								items[i]->equiped = true;
+								printf("You equiped the %s.", items[i]->name);
+								player->max_inv--;
 							}
 							else
-								printf("You don't have that item in your inventory.");
+								printf("You already have equipped it.");
 						}
+						else
+							printf("You don't have that item in your inventory.");
 					}
 				}
-				else
-					printf("You already have an item esuipped");
 			}
 
 
 			//unequip item
 			else if (comand == "unequip"){
-				if (player->item_equiped == true){
-					printf("Which item?");
-					comand.write_str();
-					for (int i = 0; i < items.size(); i++){
-						if (items[i]->name == comand.get_str()){
-							if (items[i]->actual_place == player){
-								if (items[i]->equiped == true){
-									items[i]->equiped = false;
-									printf("You unequiped the %s.", items[i]->name);
-									player->max_inv--;
-								}
-								else
-									printf("You don't have this item euipped.");
+				printf("Which item?");
+				comand.write_str();
+				for (int i = 0; i < items.size(); i++){
+					if (items[i]->name == comand.get_str()){
+						if (items[i]->actual_place == player){
+							if (items[i]->equiped == true){
+								items[i]->equiped = false;
+								printf("You unequiped the %s.", items[i]->name);
+								player->max_inv--;
 							}
 							else
-								printf("You don't have that item in your inventory.");
+								printf("You don't have this item euipped.");
 						}
+						else
+							printf("You don't have that item in your inventory.");
 					}
 				}
-				else
-					printf("You don't have anything equipped to unequip.");
 			}
 
 
 			//stats
 			else if (comand == "stats"){
-				printf("Yulna's stats:\n");
-				if (player->state == Yandere || player->state == All_dere)
-					printf("\nYou feel the Yandere power spreading through your veins.");
-				if (player->state == Tsundere || player->state == All_dere)
-					printf("\nYou feel the Tsundere power spreading through your veins.");
-				if (player->state == Kuudere || player->state == All_dere)
-					printf("\nYou feel the Kuudere power spreading through your veins.");
-				if (player->state == Dendere || player->state == All_dere)
-					printf("\nYou feel the Dendere power spreading through your veins.");
+				if (player->Yandere == true)
+					printf("You feel the Yandere power spreading through your veins.");
+				if (player->Tsundere == true)
+					printf("You feel the Tsundere power spreading through your veins.");
+				if (player->Kuudere == true)
+					printf("You feel the Kuudere power spreading through your veins.");
+				if (player->Dendere == true)
+					printf("You feel the Dendere power spreading through your veins.");
 			}
 			
-
-						
 
 			//Quitting the game
 			else if (comand == "quit" || comand == "q")
@@ -558,19 +542,5 @@ void World::Game_loop(){
 			else
 				printf("Invalid comand. Use \"h\" or \"help\" to see all available comands\n");
 
-
-			//Changing player stats depending on items equiped
-			for (int i = 0; i < items.size(); i++){
-				if (items[i]->name == "Sacred panties"&& items[i]->equiped == true)
-					player->state = All_dere;
-					
-				//Yandere -> Pice of sandwich
-				//Tsundere -> Used tissue
-				//Dendere ->Crush diary
-				//Kudere -> Pile of books
-			
-			}
-
-
-			}
+		}
 };
