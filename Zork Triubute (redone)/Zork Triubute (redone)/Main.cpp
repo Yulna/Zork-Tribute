@@ -10,9 +10,9 @@ int main(){
 
 	World new_world;
 
+
+
 	while (new_world.Game_on()){
-
-
 	};
 
 

@@ -8,5 +8,5 @@ Creature::Creature(const char* name, const char* des, EntityType id) : Entity(na
 UpdateState Creature::Update(){
 	printf("Hi");
 	
-	return UPDATEERROR;
+	return UPDATECONTINUE;
 }

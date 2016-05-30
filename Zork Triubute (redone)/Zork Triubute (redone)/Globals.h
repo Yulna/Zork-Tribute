@@ -17,4 +17,13 @@ enum UpdateState
 	UPDATESTOP
 };
 
+typedef unsigned int uint;
+
+#define DELAY 2000
+#define COMMANDBUFFER 50
+
+
+
+
+
 #endif // !__GLOBALS_H__
