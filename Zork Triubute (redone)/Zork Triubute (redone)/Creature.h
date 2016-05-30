@@ -6,6 +6,7 @@
 
 class Creature : public Entity
 {
+public:
 
 
 

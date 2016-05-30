@@ -70,6 +70,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="My_String.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -79,8 +80,10 @@
     <ClInclude Include="Exit.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Linked list.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="My_String.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="World.h" />

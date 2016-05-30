@@ -6,7 +6,9 @@ enum EntityType
 	CREATURE,
 	EXIT,
 	ROOM,
-	ITEM
+	ITEM,
+	PLAYER,
+	NPC
 };
 
 
@@ -16,6 +18,16 @@ enum UpdateState
 	UPDATEERROR,
 	UPDATESTOP
 };
+
+enum Direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEAST,
+	DOWN
+};
+
 
 typedef unsigned int uint;
 

@@ -1,4 +1,3 @@
-
 #include "Creature.h"
 
 Creature::Creature(const char* name, const char* des, EntityType id) : Entity(name, des, id){
@@ -6,7 +5,10 @@ Creature::Creature(const char* name, const char* des, EntityType id) : Entity(na
 
 
 UpdateState Creature::Update(){
-	printf("Hi");
+
+	if (id != PLAYER){
+		printf("Hi");
+	}
 	
 	return UPDATECONTINUE;
 }

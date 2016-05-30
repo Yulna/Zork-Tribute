@@ -3,6 +3,7 @@
 
 #include "My_String.h"
 #include "Globals.h"
+#include "Linked list.h"
 
 
 
@@ -12,7 +13,7 @@ public:
 	EntityType id;
 	String name;
 	String description;
-
+	List<Entity*> container;
 
 public:
 	Entity();

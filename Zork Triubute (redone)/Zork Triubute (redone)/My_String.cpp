@@ -89,6 +89,7 @@ void String::tokenize(Vector<String> &tokens){
 
 	char* context = nullptr;
 	tokens.pushback(String(strtok_s(the_string, " ", &context)));
+
 	while (*context != '\0'){
 		tokens.pushback(String(strtok_s(NULL, " ", &context)));
 	}

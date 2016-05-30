@@ -3,17 +3,16 @@
 
 #include "Globals.h"
 #include "Vector.h"
-#include "Entity.h"
-#include "Room.h"
-#include "Creature.h"
 #include "My_String.h"
+#include "Entity.h"
+#include "Player.h"
 
 
 
 class World
 {
 public:
-	
+	Player* player;
 	Vector<Entity*> entities;
 	uint currentTime;
 	uint initialTime;
@@ -27,11 +26,9 @@ public:
 
 	bool Game_on();
 
-	void ReadCommand(char* str);
+	bool ReadCommand(char* str);
 	
 };
 
-
-
-
+extern World* NewWorld;
 #endif // !__WORLD_H__

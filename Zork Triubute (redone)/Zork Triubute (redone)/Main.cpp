@@ -2,17 +2,21 @@
 //Author: Joan Pareja Piñol 
 //Github: https://github.com/Yulna/Zork-Tribute
 
-#include "MemLeaks.h"
+//#include "MemLeaks.h"
 #include "World.h"
 
+
+
+World* NewWorld = nullptr;
+
 int main(){
-	ReportMemoryLeaks();
-
-	World new_world;
+	//ReportMemoryLeaks();
 
 
+	NewWorld = new World();
 
-	while (new_world.Game_on()){
+
+	while (NewWorld->Game_on()){
 	};
 
 
