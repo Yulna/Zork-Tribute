@@ -11,9 +11,12 @@ public:
 	Direction dir;
 	Room* src;
 	Room* destination;
+	bool door;
+	ExitState state;
 
 public:
 	Exit(const char* name, const char* des, EntityType id, Direction dir, Room* src, Room* destination);
+	Exit(const char* name, const char* des, EntityType id, Direction dir, Room* src, Room* destination,bool door, ExitState state);
 	~Exit();
 };
 

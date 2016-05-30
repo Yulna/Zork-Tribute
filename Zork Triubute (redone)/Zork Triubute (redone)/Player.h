@@ -17,7 +17,9 @@ public:
 	~Player();
 
 	void Look();
-	bool move(Direction dir);
+	ExitState move(Direction dir);
+	bool open(Direction dir);
+	bool close(Direction dir);
 
 };
 

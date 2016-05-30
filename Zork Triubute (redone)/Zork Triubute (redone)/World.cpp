@@ -20,15 +20,21 @@ World::World(){
 	//Rooms
 	Room* parkStart = new Room("Room 1", "the park gonna be", ROOM);
 	Room* Room2 = new Room("Room 2", "secon room", ROOM);
+	Room* Room3 = new Room("Room 3", "3 room", ROOM);
 
 
 	entities.pushback(parkStart);
 	entities.pushback(Room2);
+	entities.pushback(Room3);
 
 
 	//Exits
 	Exit* north = new Exit("north", "north exit", EXIT, NORTH, parkStart, Room2);
+	Exit* south = new Exit("south", "south exit", EXIT, SOUTH, Room2, parkStart);
+	Exit* down = new Exit("down", "down exit", EXIT, DOWN, Room2, Room3, true, CLOSE);
 	entities.pushback(north);
+	entities.pushback(south);
+	entities.pushback(down);
 
 	//Creatures
 	player = new Player("Yulna", "The pervert", PLAYER, parkStart);
@@ -127,7 +133,7 @@ bool World::ReadCommand(char* str){
 		command.tokenize(command_token);
 
 		if (command_token[0] == "help" || command_token[0] == "h"){
-			printf("I'm helping");
+			printf("I'm helping.");
 		}
 
 		else if (command_token[0] == "look" || command_token[0] == "l"){
@@ -136,34 +142,96 @@ bool World::ReadCommand(char* str){
 
 		//Movement --------
 		else if (command_token[0] == "north" || command_token[0] == "n" || (command_token[0] == "go" && command_token[1] == "north") || (command_token[0] == "go" && command_token[1] == "n")) {
-			if (player->move(NORTH))
+			if (player->move(NORTH)==OPEN)
 				player->Look();
+			else if (player->move(NORTH) == CLOSE){
+				printf("The exit is closed.");
+			}
 			else
-				printf("There's a wall in that direction");
+				printf("There's nothing in that direction.");
 		}
 		else if (command_token[0] == "south" || command_token[0] == "s" || (command_token[0] == "go" && command_token[1] == "south") || (command_token[0] == "go" && command_token[1] == "s")) {
-			if (player->move(SOUTH))
+			if (player->move(SOUTH) == OPEN)
 				player->Look();
+			else if (player->move(SOUTH) == CLOSE){
+				printf("The exit is closed.");
+			}
 			else
-				printf("There's a wall in that direction");
+				printf("There's nothing in that direction.");
 		}
 		else if (command_token[0] == "east" || command_token[0] == "e" || (command_token[0] == "go" && command_token[1] == "east") || (command_token[0] == "go" && command_token[1] == "e")) {
-			if (player->move(EAST))
+			if (player->move(EAST) == OPEN)
 				player->Look();
+			else if (player->move(EAST) == CLOSE){
+				printf("The exit is closed.");
+			}
 			else
-				printf("There's a wall in that direction");
+				printf("There's nothing in that direction.");
 		}
 		else if (command_token[0] == "weast" || command_token[0] == "w" || (command_token[0] == "go" && command_token[1] == "weast") || (command_token[0] == "go" && command_token[1] == "w")) {
-			if (player->move(WEAST))
+			if (player->move(WEAST) == OPEN)
 				player->Look();
+			else if (player->move(WEAST) == CLOSE){
+				printf("The exit is closed.");
+			}
 			else
-				printf("There's a wall in that direction");
+				printf("There's nothing in that direction.");
 		}
 		else if (command_token[0] == "down" || command_token[0] == "d" || (command_token[0] == "go" && command_token[1] == "down") || (command_token[0] == "go" && command_token[1] == "d")) {
-			if (player->move(DOWN))
+			if (player->move(DOWN) == OPEN)
 				player->Look();
+			else if (player->move(DOWN) == CLOSE){
+				printf("The exit is closed.");
+			}
 			else
-				printf("There's a wall in that direction");
+				printf("There's nothing in that direction.");
+		}
+
+
+		//opening exits
+		else if (command_token[0] == "open" || command_token[0] == "o"){
+			if (command_token[1] == "north" || command_token[1] == "n"){
+				player->open(NORTH);
+			}
+			else if (command_token[1] == "south" || command_token[1] == "s"){
+				player->open(SOUTH);
+			}
+			else if (command_token[1] == "weast" || command_token[1] == "w"){
+				player->open(WEAST);
+			}
+			else if (command_token[1] == "east" || command_token[1] == "e"){
+				player->open(EAST);
+			}
+			else if (command_token[1] == "down" || command_token[1] == "d"){
+				player->open(DOWN);
+			}
+			
+			else{
+				printf("You must say a direction(north/south/east/weast). \nUse \"h\" or \"help\" to see all available commands\n");
+			}
+		}
+
+
+		//closing exits
+		else if (command_token[0] == "close" || command_token[0] == "c"){
+			if (command_token[1] == "north" || command_token[1] == "n"){
+				player->close(NORTH);
+			}
+			else if (command_token[1] == "south" || command_token[1] == "s"){
+				player->close(SOUTH);
+			}
+			else if (command_token[1] == "weast" || command_token[1] == "w"){
+				player->close(WEAST);
+			}
+			else if (command_token[1] == "east" || command_token[1] == "e"){
+				player->close(EAST);
+			}
+			else if (command_token[1] == "down" || command_token[1] == "d"){
+				player->close(DOWN);
+			}
+			else if (command_token[0] == "close"){
+				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
+			}
 		}
 
 

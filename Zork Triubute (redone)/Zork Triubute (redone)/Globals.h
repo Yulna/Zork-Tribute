@@ -28,6 +28,12 @@ enum Direction
 	DOWN
 };
 
+enum ExitState{
+	NOTHING,
+	CLOSE,
+	OPEN
+};
+
 
 typedef unsigned int uint;
 
