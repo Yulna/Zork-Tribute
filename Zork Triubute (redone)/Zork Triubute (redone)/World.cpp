@@ -235,6 +235,14 @@ bool World::ReadCommand(char* str){
 		}
 
 
+
+		//Show stats
+		else if (command_token[0] == "stats"){
+			printf("Yulna's stats:\n");
+			player->ShowStats();
+		}
+
+
 		//End game
 		else if (command_token[0] == "quit" || command_token[0] == "q"){
 			return false;

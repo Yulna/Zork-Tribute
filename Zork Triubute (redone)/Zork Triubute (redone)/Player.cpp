@@ -4,6 +4,10 @@
 
 
 Player::Player(const char* name, const char* des, EntityType id, Room* startRoom) : Creature(name, des, id), currentRoom(startRoom){
+	Yandere = false;
+	Tsundere = false;
+	Kuudere = false;
+	Dendere = false;
 };
 
 void Player::Look(){
@@ -75,4 +79,19 @@ bool Player::close(Direction dir){
 	printf("There is nothing to close in that direction.");
 
 	return false;
+}
+
+void Player::ShowStats(){
+	if (Yandere)
+		printf("You feel the Yandere power spreading through your veins.");
+	if (Tsundere)
+		printf("You feel the Tsundere power spreading through your veins.");
+	if (Kuudere)
+		printf("You feel the Kuudere power spreading through your veins.");
+	if (Dendere)
+		printf("You feel the Dendere power spreading through your veins.");
+
+	//When you have nothing
+	if (!Yandere && !Tsundere && !Kuudere &&!Dendere)
+		printf("You have no special stats.");
 }

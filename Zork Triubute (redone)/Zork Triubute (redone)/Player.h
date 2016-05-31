@@ -20,6 +20,13 @@ public:
 	ExitState move(Direction dir);
 	bool open(Direction dir);
 	bool close(Direction dir);
+	void ShowStats();
+
+	//States, are in bool because you can have more than once active at time
+	bool Yandere;
+	bool Tsundere;
+	bool Kuudere;
+	bool Dendere;
 
 };
 
