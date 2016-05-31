@@ -9,7 +9,7 @@
 class Player : public Creature
 {
 public:
-	Room* currentRoom;
+	
 	int used_inv;
 	bool item_equiped;
 
@@ -20,10 +20,11 @@ public:
 	bool Dendere;
 
 public:
-	Player(const char* name, const char* des, EntityType id, Room* startRoom);
+	Player(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins);
 	~Player();
 
 	void Look();
+	void IntenseLook();
 	ExitState move(Direction dir);
 	bool open(Direction dir);
 	bool close(Direction dir);

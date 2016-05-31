@@ -42,6 +42,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="World.h">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Linked list.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,9 +1,13 @@
+#include <stdlib.h>
+
 #include "World.h"
 #include "Player.h"
 #include "Exit.h"
+#include "Item.h"
+#include "NPC.h"
 
 
-Player::Player(const char* name, const char* des, EntityType id, Room* startRoom) : Creature(name, des, id), currentRoom(startRoom){
+Player::Player(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins) : Creature(name, des, id, startRoom, life, coins){
 	item_equiped = false;
 	used_inv = 0;
 	
@@ -13,8 +17,27 @@ Player::Player(const char* name, const char* des, EntityType id, Room* startRoom
 	Dendere = false;
 };
 
+
+void Player::IntenseLook(){
+	system("cls");
+	printf("%s\n%s\n", currentRoom->name.get_str(), currentRoom->description.get_str());
+
+	for (int i = 0; i < NewWorld->entities.size(); i++)
+	{
+		if (NewWorld->entities[i]->id == ITEM && ((Item*)NewWorld->entities[i])->actual_place == currentRoom){
+			printf("There's a %s in this room.\n", NewWorld->entities[i]->name.get_str());
+		}
+
+		if (NewWorld->entities[i]->id == NPC && ((Npc*)NewWorld->entities[i])->currentRoom == currentRoom){
+			printf("There's a %s in this room.\n", NewWorld->entities[i]->name.get_str());
+		}
+	}
+
+}
+
 void Player::Look(){
-	printf("%s\n%s", currentRoom->name.get_str(), currentRoom->description.get_str());
+	system("cls");
+	printf("%s\n%s\n", currentRoom->name.get_str(), currentRoom->description.get_str());
 }
 
 ExitState Player::move(Direction dir){

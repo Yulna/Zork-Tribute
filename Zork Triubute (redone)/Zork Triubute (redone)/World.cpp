@@ -10,6 +10,7 @@
 #include "Exit.h"
 #include "Creature.h"
 #include "Item.h"
+#include "NPC.h"
 
 
 
@@ -38,8 +39,8 @@ World::World(){
 	entities.pushback(down);
 
 	//Creatures
-	player = new Player("Yulna", "The pervert", PLAYER, parkStart);
-	Creature* test = new Creature("Creature 1", "a creature", NPC);
+	player = new Player("Yulna", "The pervert", PLAYER, parkStart, 50, 78);
+	Npc* test = new Npc("Creature1", "a creature", NPC, Room2, 10, 20);
 	entities.pushback(test);
 	entities.pushback(player);
 
@@ -147,7 +148,7 @@ bool World::ReadCommand(char* str){
 		}
 
 		else if (command_token[0] == "look" || command_token[0] == "l"){
-			player->Look();
+			player->IntenseLook();
 		}
 
 		//Movement --------
@@ -400,6 +401,22 @@ bool World::ReadCommand(char* str){
 		else if (command_token[0] == "stats"){
 			printf("Yulna's stats:\n");
 			player->ShowStats();
+		}
+
+
+		//"Talk"--> Show description and clues about the game
+		else if (command_token[0] == "talk"){
+			bool success = false;
+			for (int i = 0; i < entities.size(); i++){
+				if (entities[i]->id == NPC && entities[i]->name == command_token[1]){
+					system("cls");
+					((Npc*)entities[i])->Talk();
+					success = true;
+				}
+			}
+			if (!success){
+				printf("You can't do that.");
+			}
 		}
 
 
