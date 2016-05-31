@@ -13,7 +13,9 @@ public:
 	Npc(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins);
 	~Npc();
 
-	void Talk();
+	
+
+	UpdateState Update();
 };
 
 #endif // !__NPC_H__

@@ -11,6 +11,15 @@ enum EntityType
 	NPC
 };
 
+enum CreatureType
+{
+	PC,
+	KID,
+	SELLER,
+	PEDESTRIAN
+
+};
+
 
 enum UpdateState
 {

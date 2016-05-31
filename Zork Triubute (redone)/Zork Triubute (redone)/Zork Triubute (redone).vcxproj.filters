@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\NPC">
+      <UniqueIdentifier>{b8d1d15e-f380-4897-a99d-a16470c391c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Seller.cpp">
+      <Filter>Source Files\NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="NPC.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Seller.h">
+      <Filter>Source Files\NPC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

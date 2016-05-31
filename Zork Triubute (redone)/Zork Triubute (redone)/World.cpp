@@ -11,6 +11,7 @@
 #include "Creature.h"
 #include "Item.h"
 #include "NPC.h"
+#include "Seller.h"
 
 
 
@@ -41,8 +42,10 @@ World::World(){
 	//Creatures
 	player = new Player("Yulna", "The pervert", PLAYER, parkStart, 50, 78);
 	Npc* test = new Npc("Creature1", "a creature", NPC, Room2, 10, 20);
+	Seller* shopguy = new Seller("Seller", "Sells things", NPC, parkStart, 10, 20);
 	entities.pushback(test);
 	entities.pushback(player);
+	entities.pushback(shopguy);
 
 
 	//Items
