@@ -9,6 +9,7 @@
 #include "Room.h"
 #include "Exit.h"
 #include "Creature.h"
+#include "Item.h"
 
 
 
@@ -42,6 +43,12 @@ World::World(){
 	entities.pushback(test);
 	entities.pushback(player);
 
+
+	//Items
+	Item* panties = new Item("Panties", "Weapon for Panty", ITEM, Room2);
+	Item* Stockings = new Item("Stockings", "Weapon for stockings", ITEM, parkStart);
+	entities.pushback(panties);
+	entities.pushback(Stockings);
 	
 }
 
@@ -231,6 +238,62 @@ bool World::ReadCommand(char* str){
 			}
 			else if (command_token[0] == "close"){
 				printf("You must say a direction(north/south/east/weast. \nUse \"h\" or \"help\" to see all available commands\n");
+			}
+		}
+
+		//Show inventory
+		else if (command_token[0] == "inventory" || command_token[0] == "inv" || command_token[0] == "i"){
+			printf("You have this items in your inventory:\n");
+			for (int i = 0; i < entities.size(); i++)
+			{
+				if (((Item*)NewWorld->entities[i])->actual_place == player && ((Item*)NewWorld->entities[i])->equiped == false){
+					printf("   %s:", ((Item*)NewWorld->entities[i])->name);
+					printf(" %s\n", ((Item*)NewWorld->entities[i])->description);
+				}
+			}
+
+			for (int i = 0; i < entities.size(); i++)
+			{
+				if (((Item*)NewWorld->entities[i])->actual_place == player && ((Item*)NewWorld->entities[i])->equiped == true)
+					printf("You have  %s equiped\n", ((Item*)NewWorld->entities[i])->name);
+			}
+		}
+
+
+
+		//Pick items
+		else if (command_token[0] == "pick"){
+
+			if (player->used_inv < MAX_INVENTORY){
+				for (int i = 0; i < entities.size(); i++){
+					if (entities[i]->id == ITEM && entities[i]->name == command_token[1]){
+						if (((Item*)NewWorld->entities[i])->actual_place == player->currentRoom){
+							((Item*)NewWorld->entities[i])->actual_place = player;
+							printf("You put the %s into your inventory", entities[i]->name.get_str());
+							player->used_inv++;
+						}
+						else
+							printf("There isn't such item in this room.");
+					}
+				}
+			}
+			else
+				printf("Your inventory is full.");
+		}
+
+
+		//Drop items
+		else if (command_token[0] == "drop"){
+			for (int i = 0; i < entities.size(); i++){
+				if (((Item*)NewWorld->entities[i])->name == command_token[1]){
+					if (((Item*)NewWorld->entities[i])->actual_place == player && ((Item*)NewWorld->entities[i])->equiped == false){
+						((Item*)NewWorld->entities[i])->actual_place = player->currentRoom;
+						printf("You droped the %s.", ((Item*)NewWorld->entities[i])->name);
+						player->used_inv--;
+					}
+					else
+						printf("You don't have that item in your inventory");
+				}
 			}
 		}
 

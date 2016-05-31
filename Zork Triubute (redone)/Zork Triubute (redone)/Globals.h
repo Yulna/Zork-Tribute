@@ -39,7 +39,7 @@ typedef unsigned int uint;
 
 #define DELAY 2000
 #define COMMANDBUFFER 50
-
+#define MAX_INVENTORY 3
 
 
 

@@ -4,6 +4,9 @@
 
 
 Player::Player(const char* name, const char* des, EntityType id, Room* startRoom) : Creature(name, des, id), currentRoom(startRoom){
+	item_equiped = false;
+	used_inv = 0;
+	
 	Yandere = false;
 	Tsundere = false;
 	Kuudere = false;
