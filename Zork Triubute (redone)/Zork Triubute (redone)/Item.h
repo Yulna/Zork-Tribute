@@ -16,6 +16,7 @@ public:
 	Item(const char* name, const char* des, EntityType id, Entity* place);
 	~Item();
 
+	void Setcontainer(bool state);
 
 };
 
