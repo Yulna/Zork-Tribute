@@ -1,11 +1,8 @@
-#include <stdlib.h>
-
 #include "World.h"
 #include "Seller.h"
-#include "Item.h"
 #include "Exit.h"
 
-Seller::Seller(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins, CreatureType type) : Creature(name, des, id, startRoom, life, coins, type){
+Seller::Seller(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins) : Creature(name, des, id, startRoom, life, coins){
 	state = NEUTRAL;
 };
 
@@ -35,12 +32,6 @@ UpdateState Seller::Update(){
 		return UPDATECONTINUE;
 		break;
 
-	case SHOWINV:
-		ShowInventory();
-		state = NEUTRAL;
-		return UPDATECONTINUE;
-		break;
-
 
 	}
 	
@@ -50,16 +41,4 @@ UpdateState Seller::Update(){
 
 void Seller::Talk(){
 	state = TALK;
-}
-
-void Seller::ShowInventory(){
-	//system("cls");
-	printf("I have this in stock:\n");
-	for (int i = 0; i < NewWorld->entities.size(); i++){
-		if (NewWorld->entities[i]->id == ITEM && ((Item*)NewWorld->entities[i])->actual_place == this){
-			printf("  %s\n", NewWorld->entities[i]->name.get_str());
-
-		}
-
-	}
 }

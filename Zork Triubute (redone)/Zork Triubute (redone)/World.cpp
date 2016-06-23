@@ -42,7 +42,7 @@ World::World(){
 	//Creatures
 	player = new Player("Yulna", "The pervert", PLAYER, parkStart, 50, 78);
 	Npc* test = new Npc("Creature1", "a creature", NPC, Room2, 10, 20);
-	Seller* shopguy = new Seller("Seller", "Sells things", NPC, parkStart, 10, 20, SELLER);
+	Seller* shopguy = new Seller("Seller", "Sells things", NPC, parkStart, 10, 20);
 	entities.pushback(test);
 	entities.pushback(player);
 	entities.pushback(shopguy);
@@ -53,13 +53,9 @@ World::World(){
 	Item* Stockings = new Item("Stockings", "Weapon for stockings", ITEM, parkStart);
 	Item* Bag = new Item("Bag", "Put stuff in it", ITEM, Room3);
 	Bag->Setcontainer(true);
-	Item* Milk = new Item("Milk", "Natural human milk", ITEM, shopguy);
-	Item* Wine = new Item("Wine", "Time to get drunk", ITEM, shopguy);
 	entities.pushback(panties);
 	entities.pushback(Stockings);
 	entities.pushback(Bag);
-	entities.pushback(Milk);
-	entities.pushback(Wine);
 	
 }
 
@@ -425,27 +421,6 @@ bool World::ReadCommand(char* str){
 				printf("You can't do that.");
 			}
 		}
-
-
-
-		//Buy 
-		else if (command_token[0] == "buy"){
-
-			if (command_token.size() == 2){
-				for (int i = 0; i < entities.size(); i++){
-					if (entities[i]->id == NPC && ((Creature*)entities[i])->type == SELLER && entities[i]->name == command_token[1]){
-						((Seller*)entities[i])->state = SHOWINV;
-					}
-				}
-			}
-			else if (command_token.size() == 4 && command_token[2] == "from"){
-				printf("buy stuff");
-			}
-
-			else
-				printf("You can't do that.");
-		}
-
 
 
 		//End game

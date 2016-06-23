@@ -3,7 +3,6 @@
 
 #include "Creature.h"
 #include "Room.h"
-#include "Globals.h"
 
 
 enum SellerState{
@@ -11,8 +10,7 @@ enum SellerState{
 	TALK,
 	BUY,
 	SELL,
-	CONVINCED,
-	SHOWINV
+	CONVINCED
 
 };
 
@@ -22,13 +20,12 @@ public:
 	SellerState state;
 
 public:
-	Seller(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins, CreatureType type);
+	Seller(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins);
 	~Seller();
 
 	UpdateState Update();
 
 	void Talk();
-	void ShowInventory();
 };
 
 #endif // !__SELLER_H__
