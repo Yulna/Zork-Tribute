@@ -8,8 +8,6 @@
 
 
 Player::Player(const char* name, const char* des, EntityType id, Room* startRoom, int life, uint coins) : Creature(name, des, id, startRoom, life, coins){
-	item_equiped = false;
-	used_inv = 0;
 	
 	Yandere = false;
 	Tsundere = false;
@@ -19,15 +17,12 @@ Player::Player(const char* name, const char* des, EntityType id, Room* startRoom
 
 
 void Player::IntenseLook(){
-	system("cls");
-	printf("%s\n%s\n", currentRoom->name.get_str(), currentRoom->description.get_str());
+
+	Look();
 
 	for (int i = 0; i < NewWorld->entities.size(); i++)
 	{
-		if (NewWorld->entities[i]->id == ITEM && ((Item*)NewWorld->entities[i])->actual_place == currentRoom){
-			printf("There's a %s in this room.\n", NewWorld->entities[i]->name.get_str());
-		}
-
+		
 		if (NewWorld->entities[i]->id == NPC && ((Npc*)NewWorld->entities[i])->currentRoom == currentRoom){
 			printf("There's a %s in this room.\n", NewWorld->entities[i]->name.get_str());
 		}

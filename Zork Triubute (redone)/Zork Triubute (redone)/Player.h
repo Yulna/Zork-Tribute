@@ -9,9 +9,7 @@
 class Player : public Creature
 {
 public:
-	
-	int used_inv;
-	bool item_equiped;
+
 
 	//States, are in bool because you can have more than once active at time
 	bool Yandere;

@@ -48,14 +48,7 @@ World::World(){
 	entities.pushback(shopguy);
 
 
-	//Items
-	Item* panties = new Item("Panties", "Weapon for Panty", ITEM, Room2);
-	Item* Stockings = new Item("Stockings", "Weapon for stockings", ITEM, parkStart);
-	Item* Bag = new Item("Bag", "Put stuff in it", ITEM, Room3);
-	Bag->Setcontainer(true);
-	entities.pushback(panties);
-	entities.pushback(Stockings);
-	entities.pushback(Bag);
+
 	
 }
 
@@ -255,99 +248,9 @@ bool World::ReadCommand(char* str){
 	
 
 
-		//Equip item
-		else if (command_token[0] == "equip"){
-			if (player->item_equiped != true){
-				for (int i = 0; i < entities.size(); i++){
-					if (entities[i]->id == ITEM && entities[i]->name == command_token[1]){
-						if (((Item*)NewWorld->entities[i])->actual_place == player){
-							if (((Item*)NewWorld->entities[i])->equiped == false){
-								((Item*)NewWorld->entities[i])->equiped = true;
-								player->item_equiped = true;
-								printf("You equiped the %s.", ((Item*)NewWorld->entities[i])->name.get_str());
-								player->used_inv--;
-							}
-							else
-								printf("You already have equipped it.");
-						}
-						else
-							printf("You don't have that item in your inventory.");
-					}
-				}
-			}
-			else
-				printf("You already have an item equipped");
-		}
 
 
-		//Unequip items
-		else if (command_token[0] == "unequip"){
-			if (player->item_equiped == true && player->used_inv < MAX_INVENTORY){
-				for (int i = 0; i < entities.size(); i++){
-					if (entities[i]->id == ITEM && entities[i]->name == command_token[1]){
-						if (((Item*)NewWorld->entities[i])->actual_place == player){
-							if (((Item*)NewWorld->entities[i])->equiped == true){
-								((Item*)NewWorld->entities[i])->equiped = false;
-								player->item_equiped = false;
-								printf("You unequiped the %s.", ((Item*)NewWorld->entities[i])->name.get_str());
-								player->used_inv++;
-							}
-							else
-								printf("You don't have this item equipped.");
-						}
-						else
-							printf("You don't have that item in your inventory.");
-					}
-				}
-			}
-			else
-				printf("You can't do that.");
-		}
 
-		//Put item into item
-		else if (command_token[0] == "put"&&command_token[2] == "into"){
-			int i, j;
-			bool success = false;
-			for (i = 0; i < entities.size(); i++){
-				if (entities[i]->id == ITEM && ((Item*)NewWorld->entities[i])->container&&command_token[3] == ((Item*)NewWorld->entities[i])->name && ((Item*)NewWorld->entities[i])->actual_place == player){
-					for (j = 0; j < entities.size(); j++){
-						if (entities[i]->id == ITEM &&entities[j]->name == command_token[1] && ((Item*)NewWorld->entities[j])->actual_place == player){
-							((Item*)NewWorld->entities[j])->actual_place = entities[i];
-							printf("You put %s", entities[j]->name);
-							printf(" into %s.", entities[i]->name);
-							player->used_inv--;
-							success = true;
-						}
-					}
-				}
-			}
-			if (success == false)
-				printf("You can't do that.");
-		}
-
-
-		//Get item from
-		else if (command_token[0] == "get"&&command_token[2] == "from"){
-			int i, j;
-			bool success = false;
-			if (player->used_inv < MAX_INVENTORY){
-				for (i = 0; i < entities.size(); i++){
-					if (entities[i]->id == ITEM && ((Item*)NewWorld->entities[i])->container&&command_token[3] == ((Item*)NewWorld->entities[i])->name && ((Item*)NewWorld->entities[i])->actual_place == player){
-						for (j = 0; j < entities.size(); j++){
-							if (entities[i]->id == ITEM && ((Item*)NewWorld->entities[j])->name == command_token[1] && ((Item*)NewWorld->entities[j])->actual_place == entities[i]){
-								((Item*)NewWorld->entities[j])->actual_place = player;
-								printf("You got %s", entities[j]->name);
-								printf(" from %s.", entities[i]->name);
-								player->used_inv++;
-								success = true;
-							}
-						}
-					}
-				}
-			}
-			if (success == false)
-				printf("You can't do that.");
-		}
 
 
 		//Show stats
