@@ -42,14 +42,17 @@ ExitState Player::move(Direction dir){
 		if (NewWorld->entities[i]->id == EXIT && ((Exit*)NewWorld->entities[i])->src == currentRoom && ((Exit*)NewWorld->entities[i])->dir == dir){
 			if (((Exit*)NewWorld->entities[i])->state == OPEN){
 				currentRoom = ((Exit*)NewWorld->entities[i])->destination;
+				Look();
 				return OPEN;
 			}
 			else if (((Exit*)NewWorld->entities[i])->state == CLOSE){
+				printf("The exit is closed.");
 				return CLOSE;
 			}
 		}
 	}
-	
+
+	printf("There's nothing in that direction.");
 	return NOTHING;
 }
 

@@ -149,49 +149,22 @@ bool World::ReadCommand(char* str){
 
 		//Movement --------
 		else if (command_token[0] == "north" || command_token[0] == "n" || (command_token[0] == "go" && command_token[1] == "north") || (command_token[0] == "go" && command_token[1] == "n")) {
-			if (player->move(NORTH)==OPEN)
-				player->Look();
-			else if (player->move(NORTH) == CLOSE){
-				printf("The exit is closed.");
-			}
-			else
-				printf("There's nothing in that direction.");
+			player->move(NORTH);
 		}
+
 		else if (command_token[0] == "south" || command_token[0] == "s" || (command_token[0] == "go" && command_token[1] == "south") || (command_token[0] == "go" && command_token[1] == "s")) {
-			if (player->move(SOUTH) == OPEN)
-				player->Look();
-			else if (player->move(SOUTH) == CLOSE){
-				printf("The exit is closed.");
-			}
-			else
-				printf("There's nothing in that direction.");
+			player->move(SOUTH);			
 		}
+
 		else if (command_token[0] == "east" || command_token[0] == "e" || (command_token[0] == "go" && command_token[1] == "east") || (command_token[0] == "go" && command_token[1] == "e")) {
-			if (player->move(EAST) == OPEN)
-				player->Look();
-			else if (player->move(EAST) == CLOSE){
-				printf("The exit is closed.");
-			}
-			else
-				printf("There's nothing in that direction.");
+			player->move(EAST);
 		}
 		else if (command_token[0] == "weast" || command_token[0] == "w" || (command_token[0] == "go" && command_token[1] == "weast") || (command_token[0] == "go" && command_token[1] == "w")) {
-			if (player->move(WEAST) == OPEN)
-				player->Look();
-			else if (player->move(WEAST) == CLOSE){
-				printf("The exit is closed.");
-			}
-			else
-				printf("There's nothing in that direction.");
+			player->move(WEAST);
+			
 		}
 		else if (command_token[0] == "down" || command_token[0] == "d" || (command_token[0] == "go" && command_token[1] == "down") || (command_token[0] == "go" && command_token[1] == "d")) {
-			if (player->move(DOWN) == OPEN)
-				player->Look();
-			else if (player->move(DOWN) == CLOSE){
-				printf("The exit is closed.");
-			}
-			else
-				printf("There's nothing in that direction.");
+			player->move(DOWN);			
 		}
 
 
@@ -245,8 +218,6 @@ bool World::ReadCommand(char* str){
 
 
 
-	
-
 
 
 
@@ -260,21 +231,7 @@ bool World::ReadCommand(char* str){
 		}
 
 
-		//"Talk"--> Show description and clues about the game
-		else if (command_token[0] == "talk"){
-			bool success = false;
-			for (int i = 0; i < entities.size(); i++){
-				if (entities[i]->id == NPC && entities[i]->name == command_token[1]){
-					system("cls");
-					((Npc*)entities[i])->Talk();
-					success = true;
-				}
-			}
-			if (!success){
-				printf("You can't do that.");
-			}
-		}
-
+		
 
 		//End game
 		else if (command_token[0] == "quit" || command_token[0] == "q"){
